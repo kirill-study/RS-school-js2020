@@ -1,6 +1,5 @@
 html {
     box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
 }
 
 *, 
@@ -11,22 +10,52 @@ html {
 
 body {
     margin: 0 auto;
+    font-family: "Roboto", sans-serif;
+    color: white;
 }
 
 h1 {
-
+    /* TODO: hide it without display none */
+    display: none;
 }
 
 h2 {
-    font-size: ;
-    font-weight: ;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 75px;
+    /* next comment is from figma, what is identical to box h?*/
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 4.5px;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
 }
 
 #first-screen {
-
+    height: 100vh;
+    background: url(/assets/images/bg-image-wrapper.png) no-repeat;
 }
 
 #first-screen > p {
     font-size: 18px;
     font-weight: 400;
+}
+
+li {
+    display: flex;
+    font-weight: 400;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-top: 50px;
+}
+
+#center {
+    flex-direction: column;
+    align-items: center;
 }
