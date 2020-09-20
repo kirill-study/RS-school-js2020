@@ -47,7 +47,7 @@ h2 {
     font-weight: 400;
 }
 
-li {
+ul {
     display: flex;
     font-weight: 400;
     align-items: flex-start;
