@@ -1,0 +1,32 @@
+html {
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+*, 
+*::before, 
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0 auto;
+}
+
+h1 {
+
+}
+
+h2 {
+    font-size: ;
+    font-weight: ;
+}
+
+#first-screen {
+
+}
+
+#first-screen > p {
+    font-size: 18px;
+    font-weight: 400;
+}
