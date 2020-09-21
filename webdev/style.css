@@ -155,8 +155,8 @@ li:hover {
     width: 1063px;
     height: 842px;
     margin: 0 auto;
-
 }
+
 strong {
     font-weight: bold;
 }
@@ -204,12 +204,30 @@ h3 {
     height: 504px;
     background-color: #F5F6F7;
     color: #4E4E4E;
+    padding-left: 80px;
+}
+
+#abs {
+    position: relative;
+    padding-left: 431px;
+    left: 50%;
+    top: 81px;
+    font-size: 18px;
+}
+
+#abs > img {
+    padding: 0 15px;
+}
+#abs > span {
+    padding: 0 4px;
 }
 
 #long-wrapper {
     display: flex;
     flex-direction: row;
-    padding: 120px 0 140px 88px;
+    justify-content: center;
+    padding-top: 100px;
+    padding-bottom: 140px;
 }
 
 #gallery {
@@ -217,7 +235,7 @@ h3 {
     flex-direction: row;
     overflow: hidden;
     height: 244px;
-    margin-left: 70px;
+    margin-left: 50px;
 }
 
 #gallery > img {
@@ -273,7 +291,7 @@ h4 {
 
 #fourth-screen > .section-side > p {
     height: 55px;
-    margin-bottom: 30px;
+    margin-bottom: 33px;
 }
 
 /* fifth screen */
