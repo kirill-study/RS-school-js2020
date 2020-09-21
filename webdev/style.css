@@ -30,6 +30,7 @@ button:hover {
 }
 
 /* first screen */
+/* ----------------------------------------------------------------- */
 
 h2 {
     font-family: Roboto;
@@ -104,12 +105,12 @@ li > img {
 
 .center > p {
     width: 500px;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 140%;
-margin-bottom: 30px;
-text-align: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 140%;
+    margin-bottom: 30px;
+    text-align: center;
 
 }
 
@@ -141,6 +142,7 @@ li:hover {
 
 
 /* second and fourth screens */
+/* ----------------------------------------------------------------- */
 
 #second-screen,
 #fourth-screen {
@@ -153,8 +155,8 @@ li:hover {
     width: 1063px;
     height: 842px;
     margin: 0 auto;
-
 }
+
 strong {
     font-weight: bold;
 }
@@ -196,32 +198,60 @@ h3 {
 
 
 /* third screen */
+/* ----------------------------------------------------------------- */
 
 #third-screen {
     height: 504px;
     background-color: #F5F6F7;
     color: #4E4E4E;
+    padding-left: 80px;
+}
+
+#abs {
+    position: relative;
+    padding-left: 431px;
+    left: 50%;
+    top: 81px;
+    font-size: 18px;
+}
+
+#abs > img {
+    padding: 0 15px;
+}
+#abs > span {
+    padding: 0 4px;
 }
 
 #long-wrapper {
     display: flex;
     flex-direction: row;
-    padding: 120px 0 140px 88px;
+    justify-content: center;
+    padding-top: 100px;
+    padding-bottom: 140px;
+}
+
+#gallery {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    height: 244px;
+    margin-left: 50px;
 }
 
 #gallery > img {
     height: 244px;
+    margin: 0 15px;
 }
 
 h4 {
     color: #373737;
 
-font-style: normal;
-font-weight: 500;
-font-size: 16px;
-line-height: 20px;
-letter-spacing: 2.4px;
-margin-bottom: 10px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 2.4px;
+    margin-bottom: 10px;
  }
 
 #user-card {
@@ -230,16 +260,17 @@ margin-bottom: 10px;
     align-items: center;
     justify-content: center;
     width: 500px;
+    padding-left: 49px;
 }
 
 #user-card > p {
-font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 140%;
-/* or 20px */
-text-align: center;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 140%;
+    /* or 20px */
+    text-align: center;
     width: 300px
 }
 
@@ -249,6 +280,7 @@ text-align: center;
 
 
 /* fourth screen */
+/* ----------------------------------------------------------------- */
 
 #fourth-screen {
     flex-direction: row-reverse;
@@ -259,10 +291,11 @@ text-align: center;
 
 #fourth-screen > .section-side > p {
     height: 55px;
-    margin-bottom: 30px;
+    margin-bottom: 33px;
 }
 
 /* fifth screen */
+/* ----------------------------------------------------------------- */
 
 #fifth-screen {
     height: 524px;
@@ -296,19 +329,21 @@ button > span {
 }
 
 input {
-width: 342px;
-height: 46px;
-font-size: 14px;
-line-height: 140%;
-color: #818181;
-padding-left: 23px
+    width: 342px;
+    height: 46px;
+    font-size: 14px;
+    line-height: 140%;
+    padding-left: 23px
 }
+
 input::placeholder {
+    color: #818181;
     opacity: 0.5;
 }
 
 
 /* sixth screen */
+/* ----------------------------------------------------------------- */
 
 #sixth-screen {
     height: 464px;
@@ -349,11 +384,36 @@ input::placeholder {
 .btn-store {
     display: flex;
     width: 186px;
+    height: 46px;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0;
 }
 
+button > div {
+    width: 127px;
+    padding: 16px 15px;
+}
+
+button > img {
+    padding: 13px 21px;
+    background-color: #009CC2;
+}
+
+#btn-play > div {
+    width: 127px;
+    padding: 16px 14px;
+}
+
+#btn-play > img {
+    padding: 11px 18px;
+    background-color: #009CC2;
+}
+
+
+
 /* footer */
+/* ----------------------------------------------------------------- */
 
 footer {
     background-color: black;
@@ -361,6 +421,7 @@ footer {
     padding-bottom: 80px;
     display: flex;
     align-items: center;
+    height: 185px;
 
 }
 #footer_wrapper {
@@ -373,19 +434,26 @@ footer {
 }
 
 #footer_wrapper > ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;    
     width: 236px;
     font-size: 14px;
     font-weight: 400;
     padding: 0;
 }
 
-#footer_wrapper > li {
-    border-right: 1px solid white;
+#footer_wrapper > ul > li:not(:first-child)::before {
+    content: '';
     display: inline-block;
+    width: 1px;
+    height: 8px;
+    background: #4E4E4E;
+    margin-right: 20px;
 }
 
-#footer_wrapper > li:last-of-type {
-    border-right: none;
+#footer_wrapper > ul > li {
+    display: block;
 }
 
 
