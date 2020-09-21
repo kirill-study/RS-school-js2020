@@ -177,3 +177,53 @@ h3 {
     color: #373737;  
     margin-bottom: 20px;
 }
+
+#third-screen {
+    height: 504px;
+    background-color: #F5F6F7;
+    color: #4E4E4E;
+}
+
+#long-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 120px 0 140px 88px;
+}
+
+#gallery > img {
+    height: 244px;
+}
+
+h4 {
+    color: #373737;
+
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 20px;
+letter-spacing: 2.4px;
+margin-bottom: 10px;
+ }
+
+#user-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+}
+
+#user-card > p {
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 140%;
+/* or 20px */
+text-align: center;
+    width: 300px
+}
+
+#userpic {
+    margin-bottom: 20px;
+}
