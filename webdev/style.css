@@ -218,6 +218,11 @@ h3 {
 #abs > img {
     padding: 0 15px;
 }
+
+#abs > img:hover {
+    opacity: 0.5;
+}
+
 #abs > span {
     padding: 0 4px;
 }
