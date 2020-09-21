@@ -30,6 +30,7 @@ button:hover {
 }
 
 /* first screen */
+/* ----------------------------------------------------------------- */
 
 h2 {
     font-family: Roboto;
@@ -104,12 +105,12 @@ li > img {
 
 .center > p {
     width: 500px;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 140%;
-margin-bottom: 30px;
-text-align: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 140%;
+    margin-bottom: 30px;
+    text-align: center;
 
 }
 
@@ -141,6 +142,7 @@ li:hover {
 
 
 /* second and fourth screens */
+/* ----------------------------------------------------------------- */
 
 #second-screen,
 #fourth-screen {
@@ -196,6 +198,7 @@ h3 {
 
 
 /* third screen */
+/* ----------------------------------------------------------------- */
 
 #third-screen {
     height: 504px;
@@ -225,12 +228,12 @@ h3 {
 h4 {
     color: #373737;
 
-font-style: normal;
-font-weight: 500;
-font-size: 16px;
-line-height: 20px;
-letter-spacing: 2.4px;
-margin-bottom: 10px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 2.4px;
+    margin-bottom: 10px;
  }
 
 #user-card {
@@ -243,13 +246,13 @@ margin-bottom: 10px;
 }
 
 #user-card > p {
-font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 140%;
-/* or 20px */
-text-align: center;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 140%;
+    /* or 20px */
+    text-align: center;
     width: 300px
 }
 
@@ -259,6 +262,7 @@ text-align: center;
 
 
 /* fourth screen */
+/* ----------------------------------------------------------------- */
 
 #fourth-screen {
     flex-direction: row-reverse;
@@ -273,6 +277,7 @@ text-align: center;
 }
 
 /* fifth screen */
+/* ----------------------------------------------------------------- */
 
 #fifth-screen {
     height: 524px;
@@ -306,12 +311,13 @@ button > span {
 }
 
 input {
-width: 342px;
-height: 46px;
-font-size: 14px;
-line-height: 140%;
-padding-left: 23px
+    width: 342px;
+    height: 46px;
+    font-size: 14px;
+    line-height: 140%;
+    padding-left: 23px
 }
+
 input::placeholder {
     color: #818181;
     opacity: 0.5;
@@ -319,6 +325,7 @@ input::placeholder {
 
 
 /* sixth screen */
+/* ----------------------------------------------------------------- */
 
 #sixth-screen {
     height: 464px;
@@ -362,7 +369,7 @@ input::placeholder {
     height: 46px;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0
+    padding: 0;
 }
 
 button > div {
@@ -388,6 +395,7 @@ button > img {
 
 
 /* footer */
+/* ----------------------------------------------------------------- */
 
 footer {
     background-color: black;
