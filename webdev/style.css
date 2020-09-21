@@ -24,6 +24,10 @@ body {
     max-width: 1600px;
 }
 
+button:hover {
+    background-color: #009CC2;
+    cursor: pointer
+}
 
 /* first screen */
 
@@ -76,6 +80,10 @@ header {
     height: 95px;
 }
 
+Li {
+    padding-bottom: 2px;
+}
+
 li > a {
     text-decoration: none;
     font-size: 14px;
@@ -111,6 +119,10 @@ text-align: center;
     width: 170px;
     padding-bottom: 90px;
 }
+.socials > img:hover {
+    opacity: 0.5;
+    cursor: pointer
+}
 
 button {
     padding: 15px 44px;
@@ -122,10 +134,9 @@ button {
     letter-spacing: 0.03rem;
 }
 
-.active {
-    border-style: solid;
-    border-bottom: 2px;
-    border-color: white;
+.active,
+li:hover {
+    border-bottom: 1px solid white;
 }
 
 
@@ -144,7 +155,7 @@ button {
     margin: 0 auto;
 
 }
-b {
+strong {
     font-weight: bold;
 }
 
@@ -270,8 +281,30 @@ text-align: center;
     margin-bottom: 30px;
 }
 
+form > button {
+    height: 46px;
+    width: 66px;
+    padding: 0;
+    margin-left: -5px;
+}
+
+button > span {
+}
+
 #form > img {
     padding: 16px 25px 17px 25px;
+}
+
+input {
+width: 342px;
+height: 46px;
+font-size: 14px;
+line-height: 140%;
+color: #818181;
+padding-left: 23px
+}
+input::placeholder {
+    opacity: 0.5;
 }
 
 
@@ -307,7 +340,17 @@ text-align: center;
 }
 
 #buttons {
+    display: flex;
+    flex-direction: row;
     margin: 0;
+    width: 402px;
+    justify-content: space-between;
+}
+.btn-store {
+    display: flex;
+    width: 186px;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 /* footer */
@@ -335,6 +378,16 @@ footer {
     font-weight: 400;
     padding: 0;
 }
+
+#footer_wrapper > li {
+    border-right: 1px solid white;
+    display: inline-block;
+}
+
+#footer_wrapper > li:last-of-type {
+    border-right: none;
+}
+
 
 #author {
     font-size: 14px;
