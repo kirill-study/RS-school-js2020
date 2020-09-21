@@ -45,7 +45,7 @@ h2 {
     align-items: center;
     justify-content: space-between;   
     height: 100vh;
-    background: url(/assets/images/bg-image-wrapper.png) no-repeat center;
+    background: url(assets/images/bg-image-wrapper.png) no-repeat center;
     background-size: auto 100%;
 }
 
