@@ -359,9 +359,33 @@ input::placeholder {
 .btn-store {
     display: flex;
     width: 186px;
+    height: 46px;
     flex-direction: row;
-    justify-content space-between: 
+    justify-content: space-between;
+    padding: 0
 }
+
+button > div {
+    width: 127px;
+    padding: 16px 15px;
+}
+
+button > img {
+    padding: 13px 21px;
+    background-color: #009CC2;
+}
+
+#btn-play > div {
+    width: 127px;
+    padding: 16px 14px;
+}
+
+#btn-play > img {
+    padding: 11px 18px;
+    background-color: #009CC2;
+}
+
+
 
 /* footer */
 
@@ -371,6 +395,7 @@ footer {
     padding-bottom: 80px;
     display: flex;
     align-items: center;
+    height: 185px;
 
 }
 #footer_wrapper {
