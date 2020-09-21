@@ -15,10 +15,17 @@ body {
     color: white;
 }
 
-h1 {
-    /* TODO: hide it without display none */
-    display: none;
+.visually-hidden {
+    visibility: hidden;
+    position: absolute;
 }
+
+.width-wrapper {
+    max-width: 1600px;
+}
+
+
+/* first screen */
 
 h2 {
     font-family: Roboto;
@@ -26,9 +33,6 @@ h2 {
     font-weight: bold;
     font-size: 64px;
     line-height: 75px;
-    /* next comment is from figma, what is identical to box h?*/
-    /* identical to box height */
-
     text-align: center;
     letter-spacing: 4.5px;
     text-transform: uppercase;
@@ -39,7 +43,6 @@ h2 {
 }
 
 #first-screen {
-    max-width: 1600px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -126,7 +129,10 @@ button {
 }
 
 
-#second-screen {
+/* second and fourth screens */
+
+#second-screen,
+#fourth-screen {
     background-color: white;
     color: black;
     display: flex;
@@ -142,25 +148,24 @@ b {
     font-weight: bold;
 }
 
-.section-left > p {
+.section-side > p {
     width: 407px;
     height: 80px;
 
-/* body-14-reg */
-
-font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 140%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 140%;
 /* or 20px */
 
-color: #4E4E4E;
-margin-bottom: 30px;
+    color: #4E4E4E;
+    margin-bottom: 30px;
 }
 
-.section-left,
-#second-screen > img {
+.section-side,
+#second-screen > img,
+#fourth-screen > img {
     margin-bottom: 20px;
 }
 
@@ -177,6 +182,9 @@ h3 {
     color: #373737;  
     margin-bottom: 20px;
 }
+
+
+/* third screen */
 
 #third-screen {
     height: 504px;
@@ -226,4 +234,112 @@ text-align: center;
 
 #userpic {
     margin-bottom: 20px;
+}
+
+
+/* fourth screen */
+
+#fourth-screen {
+    flex-direction: row-reverse;
+}
+#fourth-screen > .section-side {
+    margin-right: 110px;
+}
+
+#fourth-screen > .section-side > p {
+    height: 55px;
+    margin-bottom: 30px;
+}
+
+/* fifth screen */
+
+#fifth-screen {
+    height: 524px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;   
+    background: url(assets/images/pexels-christina-morillo-1181675\ 1.png) no-repeat center;
+    background-size: auto 100%;
+    padding-bottom: 20px;
+}
+
+#fifth-screen > h3 {
+    color: white;
+    width: auto;
+    margin-bottom: 30px;
+}
+
+#form > img {
+    padding: 16px 25px 17px 25px;
+}
+
+
+/* sixth screen */
+
+#sixth-screen {
+    height: 464px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;   
+    background: #F5F6F7;
+    padding-bottom: 57px;
+}
+
+#sixth-screen > p {
+    color: #4E4E4E;
+    width: 480px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#sixth-screen > h3 {
+    width: auto;
+}
+
+#sixth-screen > button {
+    margin: 0;
+}
+
+#buttons {
+    margin: 0;
+}
+
+/* footer */
+
+footer {
+    background-color: black;
+    padding-top: 60px;
+    padding-bottom: 80px;
+    display: flex;
+    align-items: center;
+
+}
+#footer_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 1280px;
+    margin: auto;
+}
+
+#footer_wrapper > ul {
+    width: 236px;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 0;
+}
+
+#author {
+    font-size: 14px;
+    line-height: 140%;
+    text-align: center;
+    padding-left: 66px;
+    color: #818181;
 }
