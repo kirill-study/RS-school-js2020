@@ -209,8 +209,17 @@ h3 {
     padding: 120px 0 140px 88px;
 }
 
+#gallery {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    height: 244px;
+    margin-left: 70px;
+}
+
 #gallery > img {
     height: 244px;
+    margin: 0 15px;
 }
 
 h4 {
@@ -230,6 +239,7 @@ margin-bottom: 10px;
     align-items: center;
     justify-content: center;
     width: 500px;
+    padding-left: 49px;
 }
 
 #user-card > p {
@@ -300,10 +310,10 @@ width: 342px;
 height: 46px;
 font-size: 14px;
 line-height: 140%;
-color: #818181;
 padding-left: 23px
 }
 input::placeholder {
+    color: #818181;
     opacity: 0.5;
 }
 
@@ -350,7 +360,7 @@ input::placeholder {
     display: flex;
     width: 186px;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content space-between: 
 }
 
 /* footer */
@@ -373,19 +383,26 @@ footer {
 }
 
 #footer_wrapper > ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;    
     width: 236px;
     font-size: 14px;
     font-weight: 400;
     padding: 0;
 }
 
-#footer_wrapper > li {
-    border-right: 1px solid white;
+#footer_wrapper > ul > li:not(:first-child)::before {
+    content: '';
     display: inline-block;
+    width: 1px;
+    height: 8px;
+    background: #4E4E4E;
+    margin-right: 20px;
 }
 
-#footer_wrapper > li:last-of-type {
-    border-right: none;
+#footer_wrapper > ul > li {
+    display: block;
 }
 
 
