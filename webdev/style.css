@@ -1,5 +1,6 @@
 html {
     box-sizing: border-box;
+    background-color: black;
 }
 
 *, 
@@ -34,17 +35,18 @@ h2 {
 
     color: #FFFFFF;
 
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 #first-screen {
+    max-width: 1600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;   
     height: 100vh;
-    background: url(/assets/images/bg-image-wrapper.png) no-repeat;
-    background-size: 100% 100%;
+    background: url(/assets/images/bg-image-wrapper.png) no-repeat center;
+    background-size: auto 100%;
 }
 
 #first-screen > p {
@@ -59,14 +61,15 @@ ul {
     font-weight: 400;
     align-items: center;
     justify-content: space-between;
-    width: 600px;
+    width: 584px;
 }
 
 header {
     display: flex;
     padding-top: 0;
+    margin-right: 13px;
     flex-direction: row;
-    width: 620px;
+    width: 584px;
     height: 95px;
 }
 
@@ -85,7 +88,7 @@ li > img {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-bottom: 22px;
+    padding-bottom: 47px;
 }
 
 .center > p {
@@ -102,15 +105,28 @@ text-align: center;
 .socials {
     display: flex;
     justify-content: space-between;
-    width: 200px;
+    width: 170px;
     padding-bottom: 90px;
 }
 
 button {
-    padding: 15px 45px;
+    padding: 15px 44px;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 13px;
     border: none;
     color: white;
     background-color: #00AFDB;
+    letter-spacing: 0.03rem;
+}
+
+.active {
+    border-style: solid;
+    border-bottom: 2px;
+    border-color: white;
+}
+
+
+#second-screen {
+    width: 1600px;
+    height: 842px;
 }
