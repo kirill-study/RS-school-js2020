@@ -232,10 +232,11 @@ h3 {
 #long-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
+    width: 1768px;
     padding-top: 102px;
     padding-bottom: 140px;
-    padding-left: 200px;
+    margin-left: 201px;
 }
 
 #gallery {
@@ -267,7 +268,7 @@ h4 {
     align-items: center;
     justify-content: center;
     width: 500px;
-    padding-right: 54px;
+    padding-right: 52px;
 }
 
 #user-card > p {
