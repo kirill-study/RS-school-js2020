@@ -45,6 +45,7 @@ h2 {
 
     color: #FFFFFF;
 
+    padding-left: 3px;
     margin-bottom: 20px;
 }
 
@@ -53,7 +54,7 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;   
-    height: 100vh;
+    height: 744px;
     background: url(assets/images/bg-image-wrapper.png) no-repeat center;
     background-size: auto 100%;
 }
@@ -84,6 +85,7 @@ header {
 
 Li {
     padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
 }
 
 li > a {
@@ -92,8 +94,14 @@ li > a {
     font-weight: 400;
     color: #FFFFFF;
 }
+
 li > img {
     padding: 0 15px;
+}
+
+nav > ul > li > img:hover {
+    opacity: 0.5;
+    cursor: pointer;
 }
 .center {
     display: flex;
@@ -123,7 +131,7 @@ li > img {
 }
 .socials > img:hover {
     opacity: 0.5;
-    cursor: pointer
+    cursor: pointer;
 }
 
 button {
@@ -137,7 +145,8 @@ button {
 }
 
 .active,
-li:hover {
+li > a:hover {
+    padding-bottom: 2px;
     border-bottom: 1px solid white;
 }
 
@@ -205,6 +214,7 @@ h3 {
     height: 504px;
     background-color: #F5F6F7;
     color: #4E4E4E;
+    overflow: hidden;
 }
 
 #abs {
@@ -230,10 +240,11 @@ h3 {
 #long-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
+    width: 1768px;
     padding-top: 102px;
     padding-bottom: 140px;
-    padding-left: 200px;
+    margin-left: 201px;
 }
 
 #gallery {
@@ -246,6 +257,7 @@ h3 {
 #gallery > img {
     height: 244px;
     margin: 0 15px;
+
 }
 
 h4 {
@@ -265,7 +277,7 @@ h4 {
     align-items: center;
     justify-content: center;
     width: 500px;
-    padding-right: 54px;
+    padding-right: 52px;
 }
 
 #user-card > p {
@@ -320,13 +332,12 @@ h4 {
 }
 
 form > button {
+    background-color: #00AFDB;
     height: 46px;
     width: 66px;
     padding: 0;
     margin-left: -5px;
-}
-
-button > span {
+    padding-top: 2px;
 }
 
 #form > img {
@@ -338,7 +349,7 @@ input {
     height: 46px;
     font-size: 14px;
     line-height: 140%;
-    padding-left: 23px
+    padding-left: 23px;
 }
 
 input::placeholder {
@@ -358,7 +369,7 @@ input::placeholder {
     align-items: center;
     justify-content: center;   
     background: #F5F6F7;
-    padding-bottom: 57px;
+    padding-bottom: 59px;
 }
 
 #sixth-screen > p {
@@ -400,7 +411,7 @@ button > div {
     padding: 16px 15px;
 }
 
-button > img {
+.btn-store > img {
     padding: 13px 21px;
     background-color: #009CC2;
 }
@@ -411,7 +422,7 @@ button > img {
 }
 
 #btn-play > img {
-    padding: 11px 18px;
+    padding: 11px 19px 11px 19px;
     background-color: #009CC2;
 }
 
@@ -446,6 +457,7 @@ footer {
     font-size: 14px;
     font-weight: 400;
     padding: 0;
+    padding-top: 2px;
 }
 
 #footer_wrapper > ul > li:not(:first-child)::before {
@@ -461,6 +473,9 @@ footer {
     display: block;
 }
 
+#footer_wrapper > a > img:hover {
+    opacity: 0.5;
+}
 
 #author {
     font-size: 14px;
