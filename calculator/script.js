@@ -6,18 +6,55 @@ class Calculator {
     }
 
     clear() {
+        this.previousOperand = ''
+        this.currentOperand = ''
+        this.operator = undefined
     }
 
     delete() {
+        if (this.currentOperand == '') {
+            this.currentOperand = this.previousOperand.slice(0, -1)
+            this.previousOperand = ''
+    }
+        this.currentOperand = this.currentOperand.slice(0, -1)
     }
 
     appendNumber(number) {
+        if (this.currentOperand.includes('.') && number == '.') return
+        this.currentOperand = this.currentOperand + number
     }
 
-    updateDisplay() {
+    chooseOperation(operation) {
+        this.operation = operation
+        this.previousOperand = this.currentOperand + ' ' + this.operation
+        this.currentOperand = ''
     }
 
     compute() {
+        if (this.operation == '+') {
+            this.currentOperand = +this.previousOperand.slice(0,-1) + +this.currentOperand
+            this.previousOperand = ''
+        }
+
+        if (this.operation == '÷') {
+            this.currentOperand = +this.previousOperand.slice(0,-1) / +this.currentOperand
+            this.previousOperand = ''
+        }
+
+        if (this.operation == '*') {
+            this.currentOperand = +this.previousOperand.slice(0,-1) * +this.currentOperand
+            this.previousOperand = ''
+        }
+
+        if (this.operation == '-') {
+            this.currentOperand = +this.previousOperand.slice(0,-1) - +this.currentOperand
+            this.previousOperand = ''
+        }
+    }
+
+    updateDisplay() {
+        this.currentOperandDisplay.innerText = this.currentOperand
+        this.previousOperandDisplay.innerText = this.previousOperand
     }
 }
 
@@ -40,24 +77,24 @@ numberButtons.forEach(button => {
     })
 })
 
-operationsButtons.forEach(button => {
+operationButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.chooseOperation(button.textContent)
         calculator.updateDisplay()
     })
 })
 
-equalsButton.addEventListener('click', () => {
+equalsButton.addEventListener('click', button => {
     calculator.compute()
     calculator.updateDisplay()
 })
 
-deleteButton.addEventListener('click', () => {
+deleteButton.addEventListener('click', button => {
     calculator.delete()
     calculator.updateDisplay()
 })
 
-allClearButton.addEventListener('click', () => {
+allClearButton.addEventListener('click', button => {
     calculator.clear()
     calculator.updateDisplay()
 })
