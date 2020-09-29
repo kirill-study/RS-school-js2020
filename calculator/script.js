@@ -13,7 +13,7 @@ class Calculator {
 
     delete() {
         if (this.currentOperand == '') {
-            this.currentOperand = this.previousOperand.slice(0, -1)
+            this.currentOperand = String(this.previousOperand).slice(0, -1)
             this.previousOperand = ''
     }
         this.currentOperand = String(this.currentOperand).slice(0, -1)
@@ -21,7 +21,7 @@ class Calculator {
 
     appendNumber(number) {
         if (String(this.currentOperand).includes('.') && number == '.') return
-        this.currentOperand = this.currentOperand + number
+        this.currentOperand = String(this.currentOperand) + String(number)
     }
 
     chooseOperation(operation) {
@@ -52,14 +52,15 @@ class Calculator {
         }
     }
 
-    clearVarAfterCompute() {
-        this.currentOperand = ''
-    }
-
     updateDisplay() {
         this.currentOperandDisplay.innerText = this.currentOperand
         this.previousOperandDisplay.innerText = this.previousOperand
     }
+
+    clearVarAfterCompute() {
+        this.currentOperand = ''
+    }
+
 }
 
 const numberButtons = document.querySelectorAll('[data-number]')
