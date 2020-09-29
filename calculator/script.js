@@ -38,11 +38,19 @@ class Calculator {
         if (this.operandJustComputedState) {
             this.operandJustComputedState = false
         }
-        this.operation = operation
-        if (this.previousOperand.includes('+') ||
+        if ((this.previousOperand.includes('+') ||
             this.previousOperand.includes('-') ||
             this.previousOperand.includes('*') ||
-            this.previousOperand.includes('÷')) {
+            this.previousOperand.includes('÷')) && 
+            (this.currentOperand != '')) {
+            this.compute()
+        }
+
+        this.operation = operation
+        if ((this.previousOperand.includes('+') ||
+            this.previousOperand.includes('-') ||
+            this.previousOperand.includes('*') ||
+            this.previousOperand.includes('÷')) && (this.currentOperand == '')) {
                 this.previousOperand = this.previousOperand.slice(0,-2) + ' ' + this.operation
         }
         else this.previousOperand = this.currentOperand + ' ' + this.operation
