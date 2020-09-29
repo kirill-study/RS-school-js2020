@@ -16,7 +16,7 @@ class Calculator {
             this.currentOperand = this.previousOperand.slice(0, -1)
             this.previousOperand = ''
     }
-        this.currentOperand = this.currentOperand.slice(0, -1)
+        this.currentOperand = String(this.currentOperand).slice(0, -1)
     }
 
     appendNumber(number) {
