@@ -21,6 +21,7 @@ class Calculator {
             this.currentOperand = String(this.previousOperand).slice(0, -1)
             this.previousOperand = ''
         }
+
         this.currentOperand = String(this.currentOperand).slice(0, -1)
     }
 
@@ -30,6 +31,7 @@ class Calculator {
             this.operandJustComputedState = false
             return
         }
+
         if (String(this.currentOperand).includes('.') && number == '.') return
         this.currentOperand = String(this.currentOperand) + String(number)
     }
@@ -38,21 +40,24 @@ class Calculator {
         if (this.operandJustComputedState) {
             this.operandJustComputedState = false
         }
+
         if ((this.previousOperand.includes('+') ||
             this.previousOperand.includes('-') ||
             this.previousOperand.includes('*') ||
             this.previousOperand.includes('÷')) && 
             (this.currentOperand != '')) {
-            this.compute()
+                this.compute()
         }
 
         this.operation = operation
+
         if ((this.previousOperand.includes('+') ||
             this.previousOperand.includes('-') ||
             this.previousOperand.includes('*') ||
             this.previousOperand.includes('÷')) && (this.currentOperand == '')) {
                 this.previousOperand = this.previousOperand.slice(0,-2) + ' ' + this.operation
         }
+
         else this.previousOperand = this.currentOperand + ' ' + this.operation
         this.currentOperand = ''
     }
@@ -87,7 +92,6 @@ class Calculator {
         this.currentOperandDisplay.innerText = this.currentOperand
         this.previousOperandDisplay.innerText = this.previousOperand
     }
-
 }
 
 const numberButtons = document.querySelectorAll('[data-number]')
