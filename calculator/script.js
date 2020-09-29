@@ -20,7 +20,7 @@ class Calculator {
     }
 
     appendNumber(number) {
-        if (this.currentOperand.includes('.') && number == '.') return
+        if (String(this.currentOperand).includes('.') && number == '.') return
         this.currentOperand = this.currentOperand + number
     }
 
@@ -50,6 +50,10 @@ class Calculator {
             this.currentOperand = +this.previousOperand.slice(0,-1) - +this.currentOperand
             this.previousOperand = ''
         }
+    }
+
+    clearVarAfterCompute() {
+        this.currentOperand = ''
     }
 
     updateDisplay() {
@@ -87,6 +91,7 @@ operationButtons.forEach(button => {
 equalsButton.addEventListener('click', button => {
     calculator.compute()
     calculator.updateDisplay()
+    calculator.clearVarAfterCompute()
 })
 
 deleteButton.addEventListener('click', button => {
