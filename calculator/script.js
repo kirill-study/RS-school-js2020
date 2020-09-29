@@ -9,24 +9,43 @@ class Calculator {
         this.previousOperand = ''
         this.currentOperand = ''
         this.operator = undefined
+        this.operandJustComputedState = false
     }
 
     delete() {
+        if (this.operandJustComputedState) {
+            this.operandJustComputedState = false
+        }
+
         if (this.currentOperand == '') {
             this.currentOperand = String(this.previousOperand).slice(0, -1)
             this.previousOperand = ''
-    }
+        }
         this.currentOperand = String(this.currentOperand).slice(0, -1)
     }
 
     appendNumber(number) {
+        if (this.operandJustComputedState) {
+            this.currentOperand = String(number)
+            this.operandJustComputedState = false
+            return
+        }
         if (String(this.currentOperand).includes('.') && number == '.') return
         this.currentOperand = String(this.currentOperand) + String(number)
     }
 
     chooseOperation(operation) {
+        if (this.operandJustComputedState) {
+            this.operandJustComputedState = false
+        }
         this.operation = operation
-        this.previousOperand = this.currentOperand + ' ' + this.operation
+        if (this.previousOperand.includes('+') ||
+            this.previousOperand.includes('-') ||
+            this.previousOperand.includes('*') ||
+            this.previousOperand.includes('÷')) {
+                this.previousOperand = this.previousOperand.slice(0,-2) + ' ' + this.operation
+        }
+        else this.previousOperand = this.currentOperand + ' ' + this.operation
         this.currentOperand = ''
     }
 
@@ -34,31 +53,31 @@ class Calculator {
         if (this.operation == '+') {
             this.currentOperand = +this.previousOperand.slice(0,-1) + +this.currentOperand
             this.previousOperand = ''
+            this.operandJustComputedState = true
         }
 
         if (this.operation == '÷') {
             this.currentOperand = +this.previousOperand.slice(0,-1) / +this.currentOperand
             this.previousOperand = ''
+            this.operandJustComputedState = true
         }
 
         if (this.operation == '*') {
             this.currentOperand = +this.previousOperand.slice(0,-1) * +this.currentOperand
             this.previousOperand = ''
+            this.operandJustComputedState = true
         }
 
         if (this.operation == '-') {
             this.currentOperand = +this.previousOperand.slice(0,-1) - +this.currentOperand
             this.previousOperand = ''
+            this.operandJustComputedState = true
         }
     }
 
     updateDisplay() {
         this.currentOperandDisplay.innerText = this.currentOperand
         this.previousOperandDisplay.innerText = this.previousOperand
-    }
-
-    clearVarAfterCompute() {
-        this.currentOperand = ''
     }
 
 }
@@ -92,7 +111,6 @@ operationButtons.forEach(button => {
 equalsButton.addEventListener('click', button => {
     calculator.compute()
     calculator.updateDisplay()
-    calculator.clearVarAfterCompute()
 })
 
 deleteButton.addEventListener('click', button => {
