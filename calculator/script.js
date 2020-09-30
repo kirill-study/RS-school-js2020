@@ -55,7 +55,7 @@ class Calculator {
         }
 
         this.operation = operation
-        
+
         if (this.operation === '√' ) {
             this.compute()
             return
@@ -66,9 +66,9 @@ class Calculator {
             this.previousOperand.includes('√') ||
             this.previousOperand.includes('^') ||
             this.previousOperand.includes('*') ||
-            this.previousOperand.includes('÷')) && 
+            this.previousOperand.includes('÷')) &&
             (this.currentOperand === '')) {
-                this.previousOperand = 
+                this.previousOperand =
                     this.previousOperand.slice(0,-2) + ' ' + this.operation
                 return
         }
@@ -78,7 +78,7 @@ class Calculator {
         this.previousOperand = this.currentOperand + ' ' + this.operation
         this.currentOperand = ''
     }
-    
+
     changeSign() {
         if (this.currentOperand) this.currentOperand = -+this.currentOperand
     }
@@ -99,31 +99,31 @@ class Calculator {
                 this.operandJustComputedState = true
                 break
             case '^':
-                this.currentOperand = 
+                this.currentOperand =
                     floatify((+this.previousOperand.slice(0,-1)) ** +this.currentOperand)
                 this.previousOperand = ''
                 this.operandJustComputedState = true
                 break
             case '+':
-                this.currentOperand = 
+                this.currentOperand =
                     floatify(+this.previousOperand.slice(0,-1) + +this.currentOperand)
                 this.previousOperand = ''
                 this.operandJustComputedState = true
                 break
             case '-':
-                this.currentOperand = 
+                this.currentOperand =
                     floatify(+this.previousOperand.slice(0,-1) - +this.currentOperand)
                 this.previousOperand = ''
                 this.operandJustComputedState = true
                 break
             case '*':
-                this.currentOperand = 
+                this.currentOperand =
                     floatify(+this.previousOperand.slice(0,-1) * +this.currentOperand)
                 this.previousOperand = ''
                 this.operandJustComputedState = true
                 break
             case '÷':
-                this.currentOperand = 
+                this.currentOperand =
                     floatify(+this.previousOperand.slice(0,-1) / +this.currentOperand)
                 this.previousOperand = ''
                 this.operandJustComputedState = true
