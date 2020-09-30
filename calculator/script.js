@@ -54,8 +54,10 @@ class Calculator {
         if ((this.previousOperand.includes('+') ||
             this.previousOperand.includes('-') ||
             this.previousOperand.includes('*') ||
-            this.previousOperand.includes('÷')) && (this.currentOperand === '')) {
-                this.previousOperand = this.previousOperand.slice(0,-2) + ' ' + this.operation
+            this.previousOperand.includes('÷')) && 
+            (this.currentOperand === '')) {
+                this.previousOperand = 
+                    this.previousOperand.slice(0,-2) + ' ' + this.operation
                 return
         }
 
@@ -68,22 +70,26 @@ class Calculator {
     compute() {
         switch (this.operation) {
             case ('+' || '-' || '*' || '÷'):
-                // falls through
                 this.operandJustComputedState = true
+                // falls through
             case '+':
-                this.currentOperand = +this.previousOperand.slice(0,-1) + +this.currentOperand
+                this.currentOperand = 
+                    +this.previousOperand.slice(0,-1) + +this.currentOperand
                 this.previousOperand = ''
                 break
             case '-':
-                this.currentOperand = +this.previousOperand.slice(0,-1) - +this.currentOperand
+                this.currentOperand = 
+                    +this.previousOperand.slice(0,-1) - +this.currentOperand
                 this.previousOperand = ''
                 break
             case '*':
-                this.currentOperand = +this.previousOperand.slice(0,-1) * +this.currentOperand
+                this.currentOperand = 
+                    +this.previousOperand.slice(0,-1) * +this.currentOperand
                 this.previousOperand = ''
                 break
             case '÷':
-                this.currentOperand = +this.previousOperand.slice(0,-1) / +this.currentOperand
+                this.currentOperand = 
+                    +this.previousOperand.slice(0,-1) / +this.currentOperand
                 this.previousOperand = ''
                 break
             default:
