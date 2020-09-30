@@ -84,6 +84,10 @@ class Calculator {
     }
 
     compute() {
+        function floatify(number){
+            return parseFloat((number).toFixed(10))
+    }
+
         switch (this.operation) {
             case '√':
                 if (+this.currentOperand < 0) {
@@ -96,31 +100,31 @@ class Calculator {
                 break
             case '^':
                 this.currentOperand = 
-                    (+this.previousOperand.slice(0,-1)) ** +this.currentOperand
+                    floatify((+this.previousOperand.slice(0,-1)) ** +this.currentOperand)
                 this.previousOperand = ''
                 this.operandJustComputedState = true
                 break
             case '+':
                 this.currentOperand = 
-                    +this.previousOperand.slice(0,-1) + +this.currentOperand
+                    floatify(+this.previousOperand.slice(0,-1) + +this.currentOperand)
                 this.previousOperand = ''
                 this.operandJustComputedState = true
                 break
             case '-':
                 this.currentOperand = 
-                    +this.previousOperand.slice(0,-1) - +this.currentOperand
+                    floatify(+this.previousOperand.slice(0,-1) - +this.currentOperand)
                 this.previousOperand = ''
                 this.operandJustComputedState = true
                 break
             case '*':
                 this.currentOperand = 
-                    +this.previousOperand.slice(0,-1) * +this.currentOperand
+                    floatify(+this.previousOperand.slice(0,-1) * +this.currentOperand)
                 this.previousOperand = ''
                 this.operandJustComputedState = true
                 break
             case '÷':
                 this.currentOperand = 
-                    +this.previousOperand.slice(0,-1) / +this.currentOperand
+                    floatify(+this.previousOperand.slice(0,-1) / +this.currentOperand)
                 this.previousOperand = ''
                 this.operandJustComputedState = true
                 break
