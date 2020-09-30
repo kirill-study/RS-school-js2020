@@ -30,7 +30,7 @@ class Calculator {
 
     appendNumber(number) {
         // don't append number, if currentOperand is a result of compute
-        if (this.operandJustComputedState) {
+        if (this.operandJustComputedState || this.currentOperand === 'ERROR') {
             this.currentOperand = String(number)
             this.operandJustComputedState = false
             return
@@ -41,6 +41,11 @@ class Calculator {
     }
 
     chooseOperation(operation) {
+        if (this.currentOperand === 'ERROR') {
+            this.currentOperand = ''
+            return
+        }
+
         if (this.operandJustComputedState) {
             this.operandJustComputedState = false
         }
@@ -73,10 +78,18 @@ class Calculator {
         this.previousOperand = this.currentOperand + ' ' + this.operation
         this.currentOperand = ''
     }
+    
+    changeSign() {
+        if (this.currentOperand) this.currentOperand = -+this.currentOperand
+    }
 
     compute() {
         switch (this.operation) {
             case '√':
+                if (+this.currentOperand < 0) {
+                    this.currentOperand = 'ERROR'
+                    return
+                }
                 this.currentOperand = Math.sqrt(+this.currentOperand)
                 this.previousOperand = ''
                 this.operandJustComputedState = true
@@ -125,6 +138,7 @@ class Calculator {
 const numberButtons = document.querySelectorAll('[data-number]')
 const operationButtons = document.querySelectorAll('[data-operation]')
 
+const changeSign = document.querySelector('[data-change-sign]')
 const equalsButton = document.querySelector('[data-equals]')
 const deleteButton = document.querySelector('[data-delete]')
 const allClearButton = document.querySelector('[data-all-clear]')
@@ -146,6 +160,11 @@ operationButtons.forEach(button => {
         calculator.chooseOperation(button.textContent)
         calculator.updateDisplay()
     })
+})
+
+changeSign.addEventListener('click', button => {
+    calculator.changeSign()
+    calculator.updateDisplay()
 })
 
 equalsButton.addEventListener('click', button => {
