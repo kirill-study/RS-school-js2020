@@ -50,9 +50,16 @@ class Calculator {
         }
 
         this.operation = operation
+        
+        if (this.operation === '√' ) {
+            this.compute()
+            return
+        }
 
         if ((this.previousOperand.includes('+') ||
             this.previousOperand.includes('-') ||
+            this.previousOperand.includes('√') ||
+            this.previousOperand.includes('^') ||
             this.previousOperand.includes('*') ||
             this.previousOperand.includes('÷')) && 
             (this.currentOperand === '')) {
@@ -69,28 +76,40 @@ class Calculator {
 
     compute() {
         switch (this.operation) {
-            case ('+' || '-' || '*' || '÷'):
+            case '√':
+                this.currentOperand = Math.sqrt(+this.currentOperand)
+                this.previousOperand = ''
                 this.operandJustComputedState = true
-                // falls through
+                break
+            case '^':
+                this.currentOperand = 
+                    (+this.previousOperand.slice(0,-1)) ** +this.currentOperand
+                this.previousOperand = ''
+                this.operandJustComputedState = true
+                break
             case '+':
                 this.currentOperand = 
                     +this.previousOperand.slice(0,-1) + +this.currentOperand
                 this.previousOperand = ''
+                this.operandJustComputedState = true
                 break
             case '-':
                 this.currentOperand = 
                     +this.previousOperand.slice(0,-1) - +this.currentOperand
                 this.previousOperand = ''
+                this.operandJustComputedState = true
                 break
             case '*':
                 this.currentOperand = 
                     +this.previousOperand.slice(0,-1) * +this.currentOperand
                 this.previousOperand = ''
+                this.operandJustComputedState = true
                 break
             case '÷':
                 this.currentOperand = 
                     +this.previousOperand.slice(0,-1) / +this.currentOperand
                 this.previousOperand = ''
+                this.operandJustComputedState = true
                 break
             default:
                 return
