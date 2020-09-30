@@ -17,7 +17,7 @@ class Calculator {
             this.operandJustComputedState = false
         }
 
-        if (this.currentOperand == '') {
+        if (this.currentOperand === '') {
             this.currentOperand = String(this.previousOperand).slice(0, -1)
             this.previousOperand = ''
         }
@@ -32,7 +32,7 @@ class Calculator {
             return
         }
 
-        if (String(this.currentOperand).includes('.') && number == '.') return
+        if (String(this.currentOperand).includes('.') && number === '.') return
         this.currentOperand = String(this.currentOperand) + String(number)
     }
 
@@ -41,12 +41,8 @@ class Calculator {
             this.operandJustComputedState = false
         }
 
-        if ((this.previousOperand.includes('+') ||
-            this.previousOperand.includes('-') ||
-            this.previousOperand.includes('*') ||
-            this.previousOperand.includes('÷')) && 
-            (this.currentOperand != '')) {
-                this.compute()
+        if (this.previousOperand !== '') {
+            this.compute()
         }
 
         this.operation = operation
@@ -54,34 +50,36 @@ class Calculator {
         if ((this.previousOperand.includes('+') ||
             this.previousOperand.includes('-') ||
             this.previousOperand.includes('*') ||
-            this.previousOperand.includes('÷')) && (this.currentOperand == '')) {
+            this.previousOperand.includes('÷')) && (this.currentOperand === '')) {
                 this.previousOperand = this.previousOperand.slice(0,-2) + ' ' + this.operation
         }
-        if (this.currentOperand == '') return
-        else this.previousOperand = this.currentOperand + ' ' + this.operation
+        if (this.currentOperand === '') return
+        else {
+            this.previousOperand = this.currentOperand + ' ' + this.operation
+        }
         this.currentOperand = ''
     }
 
     compute() {
-        if (this.operation == '+') {
+        if (this.operation === '+') {
             this.currentOperand = +this.previousOperand.slice(0,-1) + +this.currentOperand
             this.previousOperand = ''
             this.operandJustComputedState = true
         }
 
-        if (this.operation == '÷') {
+        if (this.operation === '÷') {
             this.currentOperand = +this.previousOperand.slice(0,-1) / +this.currentOperand
             this.previousOperand = ''
             this.operandJustComputedState = true
         }
 
-        if (this.operation == '*') {
+        if (this.operation === '*') {
             this.currentOperand = +this.previousOperand.slice(0,-1) * +this.currentOperand
             this.previousOperand = ''
             this.operandJustComputedState = true
         }
 
-        if (this.operation == '-') {
+        if (this.operation === '-') {
             this.currentOperand = +this.previousOperand.slice(0,-1) - +this.currentOperand
             this.previousOperand = ''
             this.operandJustComputedState = true
