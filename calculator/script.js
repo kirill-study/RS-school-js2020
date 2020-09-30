@@ -9,6 +9,9 @@ class Calculator {
         this.previousOperand = ''
         this.currentOperand = ''
         this.operator = undefined
+
+        // state for differentiating how appendNumber and chooseOperation
+        // should behave if currentOperand is a result of compute
         this.operandJustComputedState = false
     }
 
@@ -26,6 +29,7 @@ class Calculator {
     }
 
     appendNumber(number) {
+        // don't append number, if currentOperand is a result of compute
         if (this.operandJustComputedState) {
             this.currentOperand = String(number)
             this.operandJustComputedState = false
@@ -52,37 +56,38 @@ class Calculator {
             this.previousOperand.includes('*') ||
             this.previousOperand.includes('÷')) && (this.currentOperand === '')) {
                 this.previousOperand = this.previousOperand.slice(0,-2) + ' ' + this.operation
+                return
         }
+
         if (this.currentOperand === '') return
-        else {
-            this.previousOperand = this.currentOperand + ' ' + this.operation
-        }
+
+        this.previousOperand = this.currentOperand + ' ' + this.operation
         this.currentOperand = ''
     }
 
     compute() {
-        if (this.operation === '+') {
-            this.currentOperand = +this.previousOperand.slice(0,-1) + +this.currentOperand
-            this.previousOperand = ''
-            this.operandJustComputedState = true
-        }
-
-        if (this.operation === '÷') {
-            this.currentOperand = +this.previousOperand.slice(0,-1) / +this.currentOperand
-            this.previousOperand = ''
-            this.operandJustComputedState = true
-        }
-
-        if (this.operation === '*') {
-            this.currentOperand = +this.previousOperand.slice(0,-1) * +this.currentOperand
-            this.previousOperand = ''
-            this.operandJustComputedState = true
-        }
-
-        if (this.operation === '-') {
-            this.currentOperand = +this.previousOperand.slice(0,-1) - +this.currentOperand
-            this.previousOperand = ''
-            this.operandJustComputedState = true
+        switch (this.operation) {
+            case ('+' || '-' || '*' || '÷'):
+                // falls through
+                this.operandJustComputedState = true
+            case '+':
+                this.currentOperand = +this.previousOperand.slice(0,-1) + +this.currentOperand
+                this.previousOperand = ''
+                break
+            case '-':
+                this.currentOperand = +this.previousOperand.slice(0,-1) - +this.currentOperand
+                this.previousOperand = ''
+                break
+            case '*':
+                this.currentOperand = +this.previousOperand.slice(0,-1) * +this.currentOperand
+                this.previousOperand = ''
+                break
+            case '÷':
+                this.currentOperand = +this.previousOperand.slice(0,-1) / +this.currentOperand
+                this.previousOperand = ''
+                break
+            default:
+                return
         }
     }
 
