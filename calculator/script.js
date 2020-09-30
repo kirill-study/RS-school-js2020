@@ -57,7 +57,7 @@ class Calculator {
             this.previousOperand.includes('÷')) && (this.currentOperand == '')) {
                 this.previousOperand = this.previousOperand.slice(0,-2) + ' ' + this.operation
         }
-
+        if (this.currentOperand == '') return
         else this.previousOperand = this.currentOperand + ' ' + this.operation
         this.currentOperand = ''
     }
