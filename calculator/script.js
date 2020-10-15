@@ -31,12 +31,21 @@ class Calculator {
     appendNumber(number) {
         // don't append number, if currentOperand is a result of compute
         if (this.operandJustComputedState || this.currentOperand === 'ERROR') {
+            if ((number ==='.')) {
+                this.currentOperand = 0.
+                this.operandJustComputedState = false
+            }
+            else {
             this.currentOperand = String(number)
             this.operandJustComputedState = false
             return
+            }
         }
 
         if (String(this.currentOperand).includes('.') && number === '.') return
+        if ((String(this.currentOperand) === '') && (number ==='.')) {
+            this.currentOperand = 0.
+        }
         this.currentOperand = String(this.currentOperand) + String(number)
     }
 

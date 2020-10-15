@@ -7,16 +7,24 @@
 body {
   padding: 0;
   margin: 0;
-  background: linear-gradient(to right, #747474, #c31bec);
+  background: linear-gradient(to right, #747474, #0011ff);
+}
+
+.instruction {
+  color: rgb(221, 221, 221);
+  padding: 5px;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .calculator-grid {
   display: grid;
+  padding-left: 100px;
   justify-content: center;
   align-content: center;
   min-height: 100vh;
-  grid-template-columns: repeat(4, 100px);
-  grid-template-rows: minmax(120px, auto) repeat(6, 100px);
+  grid-template-columns: repeat(5, 100px);
+  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
 
 .calculator-grid > button {
@@ -37,10 +45,13 @@ button[data-number] {
 
 button[data-operation], 
 button[data-equals] {
-  background-color: rgba(248, 167, 16, 0.8);
+  background-color: rgba(169, 150, 255, 0.8);
 }
 .span-two {
   grid-column: span 2;
+}
+.span-two-col {
+  grid-row: span 2;
 }
 
 .output {
