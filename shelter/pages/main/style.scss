@@ -1,4 +1,4 @@
-$color-primary-color: #f1cdb3;
+$color-primary: #f1cdb3;
 $color-primary-light: #fddcc4;
 
 $color-light-s: #fafafa;
@@ -16,10 +16,11 @@ $start-screen-gradient-background: url(/assets/img/start-screen/noise-lines-tran
 radial-gradient(100% 215.42% at 0% 0%, #58483A 0%, #262425 100%),
 #211F20;
 
-$footer-gradient-background: url( /assets/img/start-screen/noise-lines-transparent.png),
+$footer-gradient-background: url(/assets/img/start-screen/noise-lines-transparent.png),
 radial-gradient(110,67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%),
 #211F20;
 
+$card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
 
 @mixin h2 {
   font: {
@@ -38,7 +39,7 @@ radial-gradient(110,67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%),
     size: 3.5rem;
   }
   line-height: 130%;
-  letter-spacing: 0.06rem;
+  letter-spacing: 0.21rem;
 }
 
 @mixin h4 {
@@ -49,7 +50,7 @@ radial-gradient(110,67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%),
     size: 2rem;
   }
   line-height: 115%;
-  letter-spacing: 0.06rem;
+  letter-spacing: 0.12rem;
 }
 
 @mixin h5 {
@@ -60,7 +61,7 @@ radial-gradient(110,67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%),
     size: 1.5rem;
   }
   line-height: 110%;
-  letter-spacing: 0.06rem;
+  letter-spacing: 0.09rem;
 }
 
 @mixin paragraph-l {
@@ -91,7 +92,7 @@ radial-gradient(110,67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%),
     size: 3.2rem;
   }
   line-height: 110%;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.192rem;
 }
 
 @mixin logo_subtitle {
@@ -103,6 +104,61 @@ radial-gradient(110,67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%),
   }
   line-height: 110%;
   letter-spacing: 0.13rem;
+}
+
+@mixin slider_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5.2rem;
+  height: 5.2rem;
+  box-shadow: inset 0 0 0 0.3rem $color-primary;
+  border-radius: 100%;
+  transition-duration: 0.5s;
+  padding: 1.9rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+
+  &:hover {
+    box-shadow: none;
+    background-color: $color-primary-light;
+  }
+}
+
+@mixin button() {
+  padding: 1.5rem 4.5rem;
+  font-size: 1.7rem;
+  border-radius: 10rem;
+  line-height: 130%;
+  letter-spacing: 0.108rem;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  transition-duration: 0.5s;
+}
+
+@mixin button_primary() {
+  background-color: $color-primary;
+
+  &:hover {
+    background-color: $color-primary-light;
+  }
+
+  @include button();
+}
+
+@mixin button_secondary() {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 2px $color-primary;
+
+  &:hover {
+    box-shadow: none;
+    background-color: $color-primary-light;
+  }
+
+  @include button();
 }
 
 :root {
@@ -141,15 +197,17 @@ radial-gradient(110,67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%),
 .logo {
   display: flex;
   flex-direction: column;
+
   &__title {
-    color: $color-primary-color;
-    @include logo_title;
+    color: $color-primary;
+    @include logo_title();
   }
+
   &__subtitle {
     margin-top: 1rem;
     text-align: center;
     color: $color-light-xl;
-    @include logo_subtitle;
+    @include logo_subtitle();
   }
 }
 
@@ -169,14 +227,13 @@ radial-gradient(110,67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%),
       font-size: 1.5rem;
       font-weight: 400;
       line-height: 160%;
-      text-decoration: none;
 
       &_active {
-        border-bottom: solid 0.3rem $color-primary-color;
+        border-bottom: solid 0.3rem $color-primary;
       }
+
       &_disabled {
         color: $color-dark-s;
-        border-bottom: solid 0.3rem transparent;
       }
     }
   }
@@ -191,16 +248,17 @@ radial-gradient(110,67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%),
   display: flex;
   padding-top: 18rem;
   background-image: url(../../assets/start-screen/start-screen-background.png);
-  //background: $start-screen-gradient-background;
 
   &__content {
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
+
   &__image-wrapper {
     display: flex;
   }
+
   &__image {
     width: 100%;
     max-width: 69.8rem;
@@ -209,7 +267,7 @@ radial-gradient(110,67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%),
 }
 
 .content-section {
-  padding-bottom: 11rem;
+  padding-bottom: 8rem;
   max-width: 46.8rem;
   display: flex;
   flex-direction: column;
@@ -218,7 +276,7 @@ radial-gradient(110,67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%),
   &__title {
     max-width: 31rem;
     color: $color-light-xl;
-    @include h2;
+    @include h2();
   }
 
   &__subtitle {
@@ -230,14 +288,139 @@ radial-gradient(110,67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%),
   }
 
   &__button {
-    padding: 1.5rem 4.5rem;
     margin-top: 4rem;
-    font-size: 1.7rem;
-    background-color: $color-primary-color;
-    border-radius: 10rem;
-    line-height: 130%;
-    letter-spacing: 0.11rem;
-    border: none;
+    @include button_primary();
+  }
+}
+
+.about {
+  display: flex;
+
+  &__wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 8rem 17.5rem 10rem 17.5rem;
+  }
+
+  & .wrapper {
+    justify-content: center;
+  }
+
+  &__image-wrapper {
+    display: flex;
+  }
+
+  &__image {
+    width: 100%;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 43rem;
+  }
+
+  &__title {
+    span {
+      display: block;
+    }
+
+    color: $color-dark-l;
+    @include h3();
+  }
+
+  &__description {
+    margin-top: 2.5rem;
+
+    p {
+      & + p {
+        margin-top: 2.5rem;
+      }
+
+      color: $color-dark-xl;
+      @include paragraph-l();
+    }
+  }
+}
+
+.pets {
+  padding-top: 8rem;
+  padding-bottom: 10rem;
+
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
+    max-width: 40rem;
+    text-align: center;
+
+    span {
+      display: block;
+    }
+
+    color: $color-dark-l;
+    @include h3();
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+
+    .pets-cards {
+      display: flex;
+      padding: 6rem 0.8rem;
+    }
+
+    .pets-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: 0.9rem;
+      margin: 0 4.5rem;
+
+      &:hover {
+        box-shadow: $card_hover;
+      }
+
+      &__image {
+        width: 100%;
+      }
+
+      &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 3rem;
+      }
+
+      &__title {
+        margin: 3rem 0;
+        text-align: center;
+        @include h4();
+      }
+
+      &__button {
+        @include button_secondary()
+      }
+    }
+
+    .slider-button {
+      @include slider_button();
+    }
+
+    .slider-button_reverted {
+      transform: rotate(180deg);
+      @include slider_button();
+    }
+  }
+
+  &__button {
+    @include button_primary();
   }
 }
 
