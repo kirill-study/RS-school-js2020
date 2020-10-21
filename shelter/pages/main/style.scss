@@ -543,6 +543,67 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   }
 }
 
+.footer {
+  padding-top: 4rem;
+  background: url(../../assets/footer/footer-background.png);
+
+  &__content {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.6rem;
+    margin-bottom: 6rem;
+    padding-right: 16.5rem;
+  }
+
+  &__locations,
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    img {
+      width: 40px;
+    }
+
+    &-title {
+      color: $color-light-xl;
+      @include h3();
+
+      span {
+        display: block;
+      }
+    }
+
+    &__locations {
+      img {
+        width: 30px;
+      }
+    }
+
+    &-address,
+    &-phone,
+    &-mail {
+      display: flex;
+      align-items: center;
+
+      &-place {
+        span {
+          display: block;
+        }
+      }
+
+      &-place,
+      &-text {
+        margin-left: 2rem;
+        color: $color-primary;
+        @include h4();
+        text-decoration: none;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 1280px) {
   .wrapper {
     padding: 0 4rem;
