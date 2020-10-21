@@ -132,7 +132,7 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   font-size: 1.7rem;
   border-radius: 10rem;
   line-height: 130%;
-  letter-spacing: 0.108rem;
+  letter-spacing: 0.158rem;
   cursor: pointer;
   outline: none;
   border: none;
@@ -189,7 +189,7 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   top: 6rem;
 }
 
-.menu {
+.nav {
   width: 44.3rem;
   display: flex;
 }
@@ -211,23 +211,24 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   }
 }
 
-.list {
+.nav-list {
   width: 100%;
   display: flex;
   justify-content: space-between;
   list-style-type: none;
 
-  .list__item {
+  &__item {
     display: flex;
     align-items: center;
+  }
 
-    .list__link {
-      color: $color-light-xl;
-      font-family: Arial;
-      font-size: 1.5rem;
-      font-weight: 400;
-      line-height: 160%;
-      text-decoration: none;
+  &__link {
+    color: $color-light-xl;
+    font-family: Arial;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 160%;
+    text-decoration: none;
 
       &_active {
         border-bottom: solid 0.3rem $color-primary;
@@ -238,7 +239,6 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
         border-bottom: solid 0.3rem transparent;
       }
     }
-  }
 }
 
 .main {
@@ -248,10 +248,10 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
 
 .hero {
   display: flex;
-  padding-top: 16.5rem; //
+  padding-top: 18rem;
   background-image: url(../../assets/start-screen/start-screen-background.png);
 
-  &__content {
+  &__wrapper {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -264,7 +264,7 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   &__image {
     width: 100%;
     max-width: 69.8rem;
-    min-width: 72.8rem;
+    //min-width: 72.8rem;
   }
 }
 
@@ -291,6 +291,7 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
 
   &__button {
     margin-top: 4rem;
+    width: fit-content;
     @include button_primary();
   }
 }
@@ -306,7 +307,6 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   }
 
   & .wrapper {
-    justify-content: center;
   }
 
   &__image-wrapper {
@@ -371,7 +371,7 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
     @include h3();
   }
 
-  &__content {
+  &__slider {
     display: flex;
     align-items: center;
 
@@ -425,6 +425,121 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
 
   &__button {
     @include button_primary();
+  }
+}
+
+.help {
+  padding-top: 8rem;
+  padding-bottom: 10rem;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    color: $color-dark-l;
+    text-align: center;
+    @include h3();
+
+    span {
+      display: block;
+    }
+  }
+
+  &__content {
+    margin-top: 6rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 12rem;
+    row-gap: 5.5rem;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-title {
+      margin-top: 3rem;
+      color: $color-dark-l;
+      text-align: center;
+      @include h4();
+    }
+
+    img {
+      width: 60px;
+    }
+  }
+}
+
+.donation {
+  padding-top: 8rem;
+  padding-bottom: 10rem;
+  background-color: $color-light-s;
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__content {
+    margin-left: 3rem;
+    max-width: 38rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__title {
+    color: $color-dark-l;
+    @include h3();
+
+    span {
+      display: block;
+    }
+  }
+
+  &__subtitle {
+    margin-top: 2rem;
+    color: $color-dark-l;
+    @include h5();
+  }
+
+  &__payment {
+    @include button_primary();
+    margin-top: 2rem;
+    padding: 1rem 1.5rem 0.65rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    display: flex;
+    color: $color-dark-l;
+
+    &-text {
+      padding-left: 1.5rem;
+      padding-top: 0;
+      padding-bottom: 0;
+      text-decoration: none;
+      @include h4();
+    }
+
+    img {
+      width: 30px;
+    }
+  }
+
+  &__description {
+    margin-top: 2rem;
+    color: $color-dark-m;
+    @include paragraph-s();
   }
 }
 
