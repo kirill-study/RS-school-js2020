@@ -604,9 +604,27 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   }
 }
 
+@media screen and (max-width: 768px) {
+  .hero__wrapper,
+  .about__wrapper,
+  .donation__wrapper,
+  .footer .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .about__wrapper,
+  .donation__wrapper {
+    flex-direction: column-reverse;
+  }
+
+  about__image,
+  donation__image {
+  }
+}
+
 @media screen and (max-width: 1280px) {
-  .wrapper {
-    padding: 0 4rem;
+  .header .wrapper {
+    padding: 0 3rem;
   }
 }
 

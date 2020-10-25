@@ -183,7 +183,7 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
     background-color: $color-light-xl;
     z-index: 2;
   }
-  
+
   .nav {
     width: 44.3rem;
     display: flex;
@@ -305,16 +305,15 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
       }
     }
 
-  
   .logo {
     display: flex;
     flex-direction: column;
-  
+
     &__title {
       color: $color-dark-l;
       @include logo_title();
     }
-  
+
     &__subtitle {
       margin-top: 1rem;
       text-align: center;
@@ -322,4 +321,3 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
       @include logo_subtitle();
     }
   }
-  
