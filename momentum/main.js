@@ -4,7 +4,10 @@ const date = document.querySelector('.date')
 const time = document.querySelector('.time')
 const name = document.querySelector('.name')
 const goal = document.querySelector('.goal')
+const nextButton = document.querySelector('.nextButton')
 const greeting = document.querySelector('.greeting')
+const refreshButton = document.querySelector('.refreshButton')
+const quoteBody = document.querySelector('.quoteBody')
 
 let savedName
 let savedGoal
@@ -36,14 +39,18 @@ daysList = {
 
 //#endregion vars
 
-//#region date and time
+//#region date, time (entry point timer function), zeroPad
 function updateDate() {
     let now = new Date()
     let day = daysList[now.getDay()]
     let month = monthsList[now.getMonth()]
     let ndate = now.getDate()
     date.innerHTML = `${day}, ${ndate} ${month}`
-    window.setTimeout(updateDate, 1000) //TODO: not every second
+    //window.setTimeout(updateDate, 1000)
+}
+
+function zeroPad(n) {
+    return ((+n < 10 ? '0' : '') + n)
 }
 
 function updateTime() {
@@ -54,45 +61,88 @@ function updateTime() {
     time.innerHTML = `${hours}:${zeroPad(minutes)}:${zeroPad(seconds)}`
     window.setTimeout(updateTime, 1000)
 
-    function zeroPad(n) {
-        return ((+n < 10 ? '0' : '') + n)
-    }
+    if (hours == 0) updateDate()
+
+    if (minutes == 0 && seconds == 0) setBgGreet(hours)
 }
 
 //#endregion date and time
 
 //#region background
+let i = 0
 
-function nextImage() {
-    let now = new Date();
-    let hour = today.getHours();
-
-    //(hour == 0) ? document.body.style.backgroundImage = "url('../img/0.jpg')" :
-    //(hour == 1) ? document.body.style.backgroundImage = "url('../img/1.jpg')" :
+function nextTime(timeOfDay) {
+    let arrayTimes = ['night', 'morning', 'afternoon', 'evening']
+    return arrayTimes[arrayTimes.indexOf(timeOfDay)+1]
 }
 
-function setBgGreet() {
-    let now = new Date();
-    let hour = today.getHours();
+function nextImageNumber() {
+    //console.log('click gets into nextImageNumber', Math.round(Math.random()*5))
+    //should return not random of 6, but next one, or start at the beginning
+    //should go into next time of day
 
+    //if (i != 6) i++
+    //return zeroPad(imagesArray[i])
+
+    return zeroPad(imagesArray[Math.round(Math.random()*5)])
+    //return zeroPad(Math.round(Math.random()*19)+1)
+}
+
+let imagesArray
+
+function makeImagesArray() {
+    imagesArray = []
+    let randomN = Math.round(Math.random()*19 + 1)
+    while (imagesArray.length < 6) {
+        if (!imagesArray.includes(randomN)) {
+            imagesArray.push(randomN)
+        }
+        randomN = Math.round(Math.random()*19 + 1)
+    }
+    console.log(imagesArray)
+}
+
+function nextImage(timeOfDay) {
+    console.log('click gets into nextImage')
+    const img = document.createElement('img')
+    let innerNextImage = nextImageNumber(timeOfDay)
+    let innerTimeOfDay = timeOfDay
+    if (innerNextImage == 6) {
+        innerTimeOfDay = nextTime(innerTimeOfDay)
+        innerNextImage = 0
+    }
+    img.src = `assets/${innerTimeOfDay}/${nextImageNumber(innerTimeOfDay)}.jpg`
+    img.onload = () => {
+        document.body.style.backgroundImage =
+            `url('assets/${timeOfDay}/${nextImageNumber()}.jpg')`
+    }
+}
+
+function setBgGreet(hour) {
+
+    console.log('click gets into setBgGreet', hour)
+    if (hour.typeOf != 'number') {
+        let now = new Date()
+        hour = now.getHours()
+    }
     if (hour < 6) {
-        nextImage();
-        document.body.style.backgroundImage = "url('../img/morning.jpg')"
+        nextImage('night');
         greeting.textContent = 'Good Night, '
     }
 
     if (hour < 12) {
-        document.body.style.backgroundImage = "url('../img/morning.jpg')"
+        nextImage('morning');
         greeting.textContent = 'Good Morning, '
     }
 
     if (hour < 18) {
-        document.body.style.backgroundImage = "url('../img/morning.jpg')"
+        console.log('click gets into setBgGreet')
+        nextImage('afternoon');
         greeting.textContent = 'Good Afternoon, '
     }
 
     if (hour < 24) {
-        document.body.style.backgroundImage = "url('../img/morning.jpg')"
+        nextImage('evening');
         greeting.textContent = 'Good Evening, '
     }
 }
@@ -166,7 +216,44 @@ function clearGoal() {
 }
 //#endregion goal
 
+//#region quote
+async function getQuote() {
+    const url =
+        `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`
+    const res = await fetch(url)
+    const data = await res.json()
+    quoteBody.textContent = data.quoteText
+    //figcaption.textContent = data.quoteAuthor
+  }
+  document.addEventListener('DOMContentLoaded', getQuote)
+  refreshButton.addEventListener('click', getQuote)
+
+//#endregion quote
+
+//#region weather
+let cityName = ''
+
+const icon = document.querySelector('.icon');
+const temp = document.querySelector('.temp');
+
+async function getWeather() {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=en&appid=08f2a575dda978b9c539199e54df03b0&units=metric`
+  const res = await fetch(url)
+  const data = await res.json()
+  //console.log(data.weatheweatherIcon.classList.add(`owf-${data.weather[0].id}`);
+
+  icon.classList.add(`owf-${data.weather[0].id}`);
+  temp.textContent = `${data.main.temp}°C`;
+  //weatherDescription.textContent = data.weather[0].description;
+}
+getWeather()
+//#endregion weather
+
 //#region event listeners and function calls
+
+makeImagesArray()
+let newDate = new Date()
+let hoursGlobal =newDate.getHours()
 
 name.addEventListener('click', clearName)
 name.addEventListener('keypress', setName)
@@ -175,9 +262,12 @@ name.addEventListener('blur', setName)
 goal.addEventListener('keypress', setGoal)
 goal.addEventListener('click', clearGoal)
 goal.addEventListener('blur', setGoal)
-
+nextButton.addEventListener('click', setBgGreet)
+//nextButton.addEventListener('click', console.log('works??'))
 updateTime()
 updateDate()
 getName()
 getGoal()
+getQuote()
+setBgGreet(hoursGlobal)
 //#endregion event listeners and function calls
