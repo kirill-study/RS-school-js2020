@@ -145,6 +145,9 @@
 .hero__image {
   width: 100%;
   max-width: 69.8rem;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 .content-section {
@@ -771,11 +774,20 @@
         -ms-flex-direction: column-reverse;
             flex-direction: column-reverse;
   }
+  .pets-card:last-child {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1280px) {
+  .wrapper {
+    padding: 0 8rem;
+  }
   .header .wrapper {
     padding: 0 3rem;
+  }
+  .about {
+    margin: 5rem;
   }
 }
 

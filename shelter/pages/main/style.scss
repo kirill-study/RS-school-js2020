@@ -264,6 +264,7 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   &__image {
     width: 100%;
     max-width: 69.8rem;
+    align-self: center;
     //min-width: 72.8rem;
   }
 }
@@ -617,14 +618,23 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
     flex-direction: column-reverse;
   }
 
-  about__image,
-  donation__image {
+  //about__image,
+  //donation__image {
+  //}
+  .pets-card:last-child {
+    display: none;
   }
 }
 
 @media screen and (max-width: 1280px) {
+  .wrapper {
+    padding: 0 8rem;
+  }
   .header .wrapper {
     padding: 0 3rem;
+  }
+  .about {
+    margin: 5rem;
   }
 }
 
