@@ -605,7 +605,17 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1279px) {
+  //768px <= width < 1280px
+
+.header .wrapper {
+  padding: 0 3rem;
+}
+
+.header {
+  top: 2.5rem;
+}
+
   .hero__wrapper,
   .about__wrapper,
   .donation__wrapper,
@@ -618,29 +628,61 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
     flex-direction: column-reverse;
   }
 
-  //about__image,
-  //donation__image {
-  //}
+  .help__wrapper {
+    align-items: center;
+  }
+
+  .help__content {
+    width: 68rem;
+    column-gap: 5rem;
+  }
+
+  .help__item {
+    width: 17rem;
+  }
+
+  .content-section a {
+    display: contents;
+    text-decoration: none;
+  }
+
+  .content-section__button {
+    align-self: center;
+  }
+
+  .about__image,
+  .donation__image {
+    margin-top: 6rem;
+  }
+
   .pets-card:last-child {
     display: none;
   }
-}
 
-@media screen and (max-width: 1280px) {
+  .footer__content {
+    width: 65rem;
+    padding-right: 0;
+    height: 22rem;
+  }
+  /*
   .wrapper {
     padding: 0 8rem;
-  }
-  .header .wrapper {
-    padding: 0 3rem;
-  }
+}
   .about {
     margin: 5rem;
   }
+  */
 }
 
+@media screen and (max-width: 767px) {
+
+}
+
+/*
 @media screen and (max-width: 1100px) {
   .hero__content {
     flex-direction: column;
     align-items: center;
   }
 }
+*/

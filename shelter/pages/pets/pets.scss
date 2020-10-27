@@ -321,3 +321,7 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
       @include logo_subtitle();
     }
   }
+
+  .wrapper a {
+    text-decoration: none;
+  }
