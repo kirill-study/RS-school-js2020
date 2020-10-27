@@ -275,4 +275,8 @@
   line-height: 110%;
   letter-spacing: 0.13rem;
 }
+
+.wrapper a {
+  text-decoration: none;
+}
 /*# sourceMappingURL=pets.css.map */
