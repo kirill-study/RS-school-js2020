@@ -77,15 +77,22 @@ function nextTime(timeOfDay) {
     return arrayTimes[arrayTimes.indexOf(timeOfDay)+1]
 }
 
-function nextImageNumber() {
+function nextImageNumber(timeOfDay, hour) {
     //console.log('click gets into nextImageNumber', Math.round(Math.random()*5))
     //should return not random of 6, but next one, or start at the beginning
     //should go into next time of day
 
     //if (i != 6) i++
     //return zeroPad(imagesArray[i])
+    //return hour
 
     return zeroPad(imagesArray[Math.round(Math.random()*5)])
+
+    if (timeOfDay == 'night') return imagesArray[hour]
+    if (timeOfDay == 'morning') return imagesArray[hour-6]
+    if (timeOfDay == 'afternoon') return imagesArray[hour-12]
+    if (timeOfDay == 'evening') return imagesArray[hour-18]
+
     //return zeroPad(Math.round(Math.random()*19)+1)
 }
 
@@ -103,10 +110,10 @@ function makeImagesArray() {
     console.log(imagesArray)
 }
 
-function nextImage(timeOfDay) {
-    console.log('click gets into nextImage')
+function nextImage(timeOfDay, hour) {
+    //console.log('click gets into nextImage')
     const img = document.createElement('img')
-    let innerNextImage = nextImageNumber(timeOfDay)
+    let innerNextImage = nextImageNumber(timeOfDay, hour)
     let innerTimeOfDay = timeOfDay
     if (innerNextImage == 6) {
         innerTimeOfDay = nextTime(innerTimeOfDay)
@@ -121,29 +128,29 @@ function nextImage(timeOfDay) {
 
 function setBgGreet(hour) {
 
-    console.log('click gets into setBgGreet', hour)
+    //console.log('click gets into setBgGreet', hour)
     if (hour.typeOf != 'number') {
         let now = new Date()
         hour = now.getHours()
     }
     if (hour < 6) {
-        nextImage('night');
+        nextImage('night', hour);
         greeting.textContent = 'Good Night, '
     }
 
     if (hour < 12) {
-        nextImage('morning');
+        nextImage('morning', hour);
         greeting.textContent = 'Good Morning, '
     }
 
     if (hour < 18) {
         console.log('click gets into setBgGreet')
-        nextImage('afternoon');
+        nextImage('afternoon', hour);
         greeting.textContent = 'Good Afternoon, '
     }
 
     if (hour < 24) {
-        nextImage('evening');
+        nextImage('evening', hour);
         greeting.textContent = 'Good Evening, '
     }
 }
@@ -284,18 +291,21 @@ const humidity = document.querySelector('.humidity');
 const wind = document.querySelector('.wind');
 
 async function getWeather() {
-   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=9d314bcec01fde2cf167a6bba6e9e512&units=metric`
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=9d314bcec01fde2cf167a6bba6e9e512&units=metric`
   const res = await fetch(url)
   const data = await res.json()
   //console.log(data.weatheweatherIcon.classList.add(`owf-${data.weather[0].id}`);
+    console.log(data.main)
+  if (!data.main) {city.textContent = "Can't find such city"}
 
-  //icon.classList.add(`owf-${data.weather[0].id}`)
   temp.textContent = data.main.temp + ' °C'
   localStorage.setItem('temp', temp.innerText)
   humidity.textContent = 'humidity ' + data.main.humidity
   localStorage.setItem('humidity', humidity.innerText)
   wind.textContent = 'wind ' + data.wind.speed
   localStorage.setItem('wind', wind.innerText)
+  icon.className = 'weather-icon owf';
+  icon.classList.add(`owf-${data.weather[0].id}`)
   //humidity.textContent = data.weather[0].description
 }
 
