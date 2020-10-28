@@ -288,6 +288,9 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
+  .pets-card:nth-child(7) {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 767px) {
