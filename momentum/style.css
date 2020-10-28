@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    background-color: grey;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center center;
+    transition: background-image 1s ease-in-out;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center center;
+    background-image: url(assets/overlay.png);
+}
+
+.quote {
+    display: flex;
+    height: 20vh;
+    padding: 0 1.5rem 0 1.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
+}
+
+button, h2 {
+    margin: 0.5rem;
+}
+
+time {
+    font-family: monospace;
+    font-size: 130px;
+}
+
+.weather {
+    margin-top: 0.5rem;
+    width: 15ch;
+}
+
+button, .city, .goal, .name {
+    cursor: pointer;
+    transition: color 0.2s 0.2s;
+}
+button:hover, .city:hover, .goal:hover, .name:hover {
+    color: rgb(221, 221, 221);
+}
+
+@media screen and (max-width: 750px) {
+    * {
+        font-size: 5vw;
+    }
+    time {
+        font-size: 13vw;
+    }
+    .quote {
+        height: 25vh;
+    }
+}
