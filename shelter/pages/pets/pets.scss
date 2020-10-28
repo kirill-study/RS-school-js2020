@@ -321,6 +321,19 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
     text-decoration: none;
   }
 
+  .pets-header {
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+      top:0;
+  }
+
+@media screen and (max-width: 1279px) {
+  .main-pets-cards {
+    justify-content: center;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .nav {
     display: none;
