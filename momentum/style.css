@@ -48,9 +48,18 @@ body {
     justify-content: baseline;
 }
 
+button, h2 {
+    margin: 0.5rem;
+}
+
 time {
     font-family: monospace;
-    font-size: 150px;
+    font-size: 130px;
+}
+
+.weather {
+    margin-top: 0.5rem;
+    width: 15ch;
 }
 
 button, .city, .goal, .name {
@@ -58,7 +67,7 @@ button, .city, .goal, .name {
     transition: color 0.2s 0.2s;
 }
 button:hover, .city:hover, .goal:hover, .name:hover {
-    color: grey;
+    color: rgb(221, 221, 221);
 }
 
 @media screen and (max-width: 750px) {

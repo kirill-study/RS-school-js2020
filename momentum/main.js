@@ -4,6 +4,7 @@ const date = document.querySelector('.date')
 const time = document.querySelector('.time')
 const name = document.querySelector('.name')
 const goal = document.querySelector('.goal')
+const city = document.querySelector('.city')
 const nextButton = document.querySelector('.nextButton')
 const greeting = document.querySelector('.greeting')
 const refreshButton = document.querySelector('.refreshButton')
@@ -231,22 +232,74 @@ async function getQuote() {
 //#endregion quote
 
 //#region weather
-let cityName = ''
+
+function setCity(e) {
+    if (e.type === 'keypress') {
+        if (e.which == 13 || e.keyCode == 13) {
+            if (e.target.innerText === '') {
+                localStorage.setItem('city', savedCity)
+                getWeather()
+        //getWeather().catch(alert("Can't find such city"))
+                city.blur()
+            }
+            else {
+                localStorage.setItem('city', e.target.innerText)
+                getWeather()
+        //getWeather().catch(alert("Can't find such city"))
+                city.blur()
+            }
+        }
+    } else {
+        if (e.target.innerText === '') {
+                localStorage.setItem('city', savedCity)
+                city.textContent = localStorage.getItem('city')
+                getWeather()
+        //getWeather().catch(alert("Can't find such city"))
+            }
+        else {
+            getWeather()
+        //getWeather().catch(alert("Can't find such city"))
+            localStorage.setItem('city', e.target.innerText)
+        }
+    }
+}
+
+function clearCity() {
+    savedCity = city.textContent
+    city.textContent = ''
+}
+
+function getCity() {
+    if(!localStorage.getItem('city')) city.textContent = '[City name]'
+    else {
+        city.textContent = localStorage.getItem('city')
+        getWeather()
+        //getWeather().catch(alert("Can't find such city"))
+    }
+}
 
 const icon = document.querySelector('.icon');
 const temp = document.querySelector('.temp');
+const humidity = document.querySelector('.humidity');
+const wind = document.querySelector('.wind');
 
 async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=en&appid=08f2a575dda978b9c539199e54df03b0&units=metric`
+   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=9d314bcec01fde2cf167a6bba6e9e512&units=metric`
   const res = await fetch(url)
   const data = await res.json()
   //console.log(data.weatheweatherIcon.classList.add(`owf-${data.weather[0].id}`);
 
-  icon.classList.add(`owf-${data.weather[0].id}`);
-  temp.textContent = `${data.main.temp}°C`;
-  //weatherDescription.textContent = data.weather[0].description;
+  //icon.classList.add(`owf-${data.weather[0].id}`)
+  temp.textContent = data.main.temp + ' °C'
+  localStorage.setItem('temp', temp.innerText)
+  humidity.textContent = 'humidity ' + data.main.humidity
+  localStorage.setItem('humidity', humidity.innerText)
+  wind.textContent = 'wind ' + data.wind.speed
+  localStorage.setItem('wind', wind.innerText)
+  //humidity.textContent = data.weather[0].description
 }
-getWeather()
+
+
 //#endregion weather
 
 //#region event listeners and function calls
@@ -259,8 +312,12 @@ name.addEventListener('click', clearName)
 name.addEventListener('keypress', setName)
 name.addEventListener('blur', setName)
 
-goal.addEventListener('keypress', setGoal)
+city.addEventListener('click', clearCity)
+city.addEventListener('keypress', setCity)
+city.addEventListener('blur', setCity)
+
 goal.addEventListener('click', clearGoal)
+goal.addEventListener('keypress', setGoal)
 goal.addEventListener('blur', setGoal)
 nextButton.addEventListener('click', setBgGreet)
 //nextButton.addEventListener('click', console.log('works??'))
@@ -268,6 +325,8 @@ updateTime()
 updateDate()
 getName()
 getGoal()
-getQuote()
+getCity()
+//getQuote()
 setBgGreet(hoursGlobal)
+//getQuote()
 //#endregion event listeners and function calls
