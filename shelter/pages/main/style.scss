@@ -675,7 +675,34 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
 }
 
 @media screen and (max-width: 767px) {
-
+:root {
+  font-size: 7px;
+}
+.nav {
+  display: none;
+}
+.wrapper {
+  padding: 2rem;
+}
+.footer__content {
+  flex-direction: column;
+  width: auto;
+}
+.donation__image {
+  width: 300px;
+}
+.footer__locations-address,
+.footer__contacts-mail,
+.footer__contacts-phone {
+  padding: 1rem 0;
+}
+.help__content {
+  width: 40rem;
+  column-gap: 2rem;
+}
+  .pets-card:nth-child(2) {
+    display: none;
+  }
 }
 
 /*
