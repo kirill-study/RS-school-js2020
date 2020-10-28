@@ -12,7 +12,7 @@ const quoteBody = document.querySelector('.quoteBody')
 let savedName
 let savedGoal
 
-daysList = {
+let daysList = {
     '0': 'Sunday',
     '1': 'Monday',
     '2': 'Tuesday',
@@ -22,7 +22,7 @@ daysList = {
     '6': 'Saturday',
  }
 
- monthsList = {
+ let monthsList = {
     '0': 'January',
     '1': 'February',
     '2': 'March',

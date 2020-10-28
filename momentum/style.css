@@ -27,6 +27,18 @@ body {
     transition: background-image 1s ease-in-out;
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center center;
+    background-image: url(assets/overlay.png);
+}
+
 .quote {
     display: flex;
     height: 20vh;
@@ -51,7 +63,7 @@ button:hover, .city:hover, .goal:hover, .name:hover {
 
 @media screen and (max-width: 750px) {
     * {
-        font-size: 3vw;
+        font-size: 5vw;
     }
     time {
         font-size: 13vw;
