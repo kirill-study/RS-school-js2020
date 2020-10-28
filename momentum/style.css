@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .center {
@@ -59,7 +59,8 @@ time {
 
 .weather {
     margin-top: 0.5rem;
-    width: 15ch;
+    width: 20ch;
+    font-size: 20px;
 }
 
 button, .city, .goal, .name {
@@ -70,14 +71,24 @@ button:hover, .city:hover, .goal:hover, .name:hover {
     color: rgb(221, 221, 221);
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 900px) {
     * {
-        font-size: 5vw;
+        font-size: 16px;
     }
     time {
         font-size: 13vw;
     }
     .quote {
-        height: 25vh;
+        height: 20vh;
+    }
+    span {
+        display: block;
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+    span {
+        display: block;
     }
 }
