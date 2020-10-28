@@ -754,6 +754,12 @@
   text-decoration: none;
 }
 
+.interactive:hover {
+  text-shadow: 0.5px 0.5px 2px pink;
+  -webkit-transition: text-shadow 0.3s linear;
+  transition: text-shadow 0.3s linear;
+}
+
 @media screen and (max-width: 1279px) {
   .header .wrapper {
     padding: 0 3rem;
