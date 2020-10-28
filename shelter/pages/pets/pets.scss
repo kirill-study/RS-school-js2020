@@ -168,11 +168,6 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   @include button();
 }
 
-:root {
-  font-size: 10px;
-}
-
-
 .pets-header {
     display: flex;
     align-items: center;
@@ -325,3 +320,9 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   .wrapper a {
     text-decoration: none;
   }
+
+@media screen and (max-width: 767px) {
+  .nav {
+    display: none;
+  }
+}
