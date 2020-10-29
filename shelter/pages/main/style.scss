@@ -610,6 +610,14 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   transition: text-shadow 0.3s linear;
 }
 
+.burger {
+  display: none;
+}
+
+
+
+
+
 @media screen and (max-width: 1279px) {
   //768px <= width < 1280px
 
@@ -683,6 +691,15 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
 :root {
   font-size: 7px;
 }
+
+.burger {
+  display: block;
+}
+
+p {
+  text-align:justify;
+}
+
 .nav {
   display: none;
 }
@@ -703,10 +720,19 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
 }
 .help__content {
   width: 40rem;
-  column-gap: 2rem;
+  column-gap: 6rem;
+  justify-content: flex-start;
 }
   .pets-card:nth-child(2) {
     display: none;
+  }
+
+  .content-section,
+  .about__content,
+  .donation__content,
+  .footer__content {
+    text-align: center;
+    align-items: center;
   }
 }
 

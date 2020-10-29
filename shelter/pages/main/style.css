@@ -760,6 +760,10 @@
   transition: text-shadow 0.3s linear;
 }
 
+.burger {
+  display: none;
+}
+
 @media screen and (max-width: 1279px) {
   .header .wrapper {
     padding: 0 3rem;
@@ -834,6 +838,12 @@
   :root {
     font-size: 7px;
   }
+  .burger {
+    display: block;
+  }
+  p {
+    text-align: justify;
+  }
   .nav {
     display: none;
   }
@@ -857,11 +867,23 @@
   }
   .help__content {
     width: 40rem;
-    -webkit-column-gap: 2rem;
-            column-gap: 2rem;
+    -webkit-column-gap: 6rem;
+            column-gap: 6rem;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
   }
   .pets-card:nth-child(2) {
     display: none;
+  }
+  .content-section,
+  .about__content,
+  .donation__content,
+  .footer__content {
+    text-align: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 }
 
