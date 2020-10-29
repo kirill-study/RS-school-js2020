@@ -341,4 +341,14 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   .nav {
     display: none;
   }
+  .pets-card:nth-child(5),
+  .pets-card:nth-child(6),
+  .pets-card:nth-child(7),
+   {
+    display: none;
+  }
+
+  .main-pets-cards {
+    flex-direction: column;
+  }
 }

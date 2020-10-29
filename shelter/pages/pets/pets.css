@@ -297,5 +297,16 @@
   .nav {
     display: none;
   }
+  .pets-card:nth-child(5),
+  .pets-card:nth-child(6),
+  .pets-card:nth-child(7) {
+    display: none;
+  }
+  .main-pets-cards {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 /*# sourceMappingURL=pets.css.map */
