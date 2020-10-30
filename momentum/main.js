@@ -97,6 +97,7 @@ function nextImageNumber(timeOfDay, hour) {
 }
 
 let imagesArray
+let imagesArrayAll = []
 
 function makeImagesArray() {
     imagesArray = []
@@ -107,23 +108,42 @@ function makeImagesArray() {
         }
         randomN = Math.round(Math.random()*19 + 1)
     }
+    //imagesArray.push(...imagesArray)
     console.log(imagesArray)
 }
+
+let innerTimeOfDay
 
 function nextImage(timeOfDay, hour) {
     //console.log('click gets into nextImage')
     const img = document.createElement('img')
-    let innerNextImage = nextImageNumber(timeOfDay, hour)
-    let innerTimeOfDay = timeOfDay
-    if (innerNextImage == 6) {
-        innerTimeOfDay = nextTime(innerTimeOfDay)
-        innerNextImage = 0
-    }
-    img.src = `assets/${innerTimeOfDay}/${nextImageNumber(innerTimeOfDay)}.jpg`
+    //let innerNextImage = nextImageNumber(timeOfDay, hour)
+    //let innerTimeOfDay = timeOfDay
+    //if (innerNextImage == 6) {
+    //    innerTimeOfDay = nextTime(innerTimeOfDay)
+    //    innerNextImage = 0
+    //}
+
+    img.src = `assets/${timeOfDay}/${zeroPad(imagesArray[hour%6])}.jpg`
     img.onload = () => {
         document.body.style.backgroundImage =
-            `url('assets/${timeOfDay}/${nextImageNumber()}.jpg')`
+            `url('assets/${timeOfDay}/${zeroPad(imagesArray[hour%6])}.jpg')`
     }
+}
+
+let clicked = false
+
+function recalcToD(hour) {
+    if (hour < 6) return 'night'
+    else if (hour < 12) return 'morning'
+    else if (hour < 18) return 'afternoon'
+    else if (hour < 24) return 'evening'
+    else if (hour >= 24) {
+        hour = 0
+        i = 0
+        return 'night'
+    }
+    // my mistake -- can't pass hour less than it is, see images before current time
 }
 
 function setBgGreet(hour) {
@@ -133,26 +153,40 @@ function setBgGreet(hour) {
     if (hour.typeOf != 'number') {
         let now = new Date()
         hour = now.getHours()
+        clicked = true
+        i++
     }
     if (hour < 6) {
-        nextImage('night', hour);
         greeting.textContent = 'Good Night, '
+        if (clicked) nextImage(recalcToD(hour+i),hour+i)
+        else {
+          nextImage('night', hour)
+          i = 0
+        }
     }
 
     else if (hour < 12) {
-        nextImage('morning', hour);
         greeting.textContent = 'Good Morning, '
+        if (clicked) nextImage(recalcToD(hour+i),hour+i)
+        else {
+        nextImage('morning', hour);
+        i = 0}
     }
 
     else if (hour < 18) {
-        console.log('click gets into setBgGreet')
-        nextImage('afternoon', hour);
         greeting.textContent = 'Good Afternoon, '
+        if (clicked) nextImage(recalcToD(hour+i),hour+i)
+        else {
+        nextImage('afternoon', hour);
+        i = 0}
     }
 
     else if (hour < 24) {
-        nextImage('evening', hour);
         greeting.textContent = 'Good Evening, '
+        if (clicked) nextImage(recalcToD(hour+i),hour+i)
+        else {
+        nextImage('evening', hour);
+        i = 0}
     }
 }
 
@@ -321,7 +355,7 @@ async function getWeather() {
 //#region event listeners and function calls
 function coolDownWrapperBg() {
     document.querySelector(".nextButton").disabled = true;
-    setTimeout(function() {document.querySelector(".nextButton").disabled = false;}, 1200);
+    setTimeout(function() {document.querySelector(".nextButton").disabled = false;}, 2200);
     setBgGreet("d")
 }
 
