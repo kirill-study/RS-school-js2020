@@ -124,17 +124,19 @@ function nextImage(timeOfDay, hour) {
     //    innerNextImage = 0
     //}
 
-    console.log(`assets/${timeOfDay}/${zeroPad(imagesArray[hour%6])}.jpg`)
-    img.src = `assets/${timeOfDay}/${zeroPad(imagesArray[hour%6])}.jpg`
+    //console.log(hour, imagesArray[hour%6], 'strange')
+    console.log(`assets/${timeOfDay}/${zeroPad(imagesArray[(hour-1)%6])}.jpg`)
+    img.src = `assets/${timeOfDay}/${zeroPad(imagesArray[(hour-1)%6])}.jpg`
     img.onload = () => {
         document.body.style.backgroundImage =
-            `url('assets/${timeOfDay}/${zeroPad(imagesArray[hour%6])}.jpg')`
+            `url('assets/${timeOfDay}/${zeroPad(imagesArray[(hour-1)%6])}.jpg')`
     }
 }
 
 let clicked = false
 
 function recalcToD(hour) {
+    hour = hour - 1
     hour = hour % 24
     if (hour < 6) return 'night'
     else if (hour < 12) return 'morning'
@@ -166,6 +168,7 @@ function setBgGreet(hour) {
         else {
           nextImage('night', hour)
           i = 0
+          clicked = false
         }
     }
 
@@ -174,14 +177,17 @@ function setBgGreet(hour) {
         if (clicked) nextImage(recalcToD(hourWrapper),hourWrapper)
         else {
         nextImage('morning', hour);
+          clicked = false
         i = 0}
     }
 
     else if (hour < 18) {
+        console.log(hour, imagesArray[hour%6], 'strange')
         greeting.textContent = 'Good Afternoon, '
         if (clicked) nextImage(recalcToD(hourWrapper),hourWrapper)
         else {
         nextImage('afternoon', hour);
+          clicked = false
         i = 0}
     }
 
@@ -190,6 +196,7 @@ function setBgGreet(hour) {
         if (clicked) nextImage(recalcToD(hourWrapper),hourWrapper)
         else {
         nextImage('evening', hour);
+          clicked = false
         i = 0}
     }
 }
