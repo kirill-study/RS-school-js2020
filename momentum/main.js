@@ -107,19 +107,20 @@ function makeImagesArray() {
         }
         randomN = Math.round(Math.random()*19 + 1)
     }
+    //imagesArray.push(...imagesArray)
     console.log(imagesArray)
 }
 
 function nextImage(timeOfDay, hour) {
     //console.log('click gets into nextImage')
     const img = document.createElement('img')
-    let innerNextImage = nextImageNumber(timeOfDay, hour)
-    let innerTimeOfDay = timeOfDay
-    if (innerNextImage == 6) {
-        innerTimeOfDay = nextTime(innerTimeOfDay)
-        innerNextImage = 0
-    }
-    img.src = `assets/${innerTimeOfDay}/${nextImageNumber(innerTimeOfDay)}.jpg`
+    //let innerNextImage = nextImageNumber(timeOfDay, hour)
+    //let innerTimeOfDay = timeOfDay
+    //if (innerNextImage == 6) {
+    //    innerTimeOfDay = nextTime(innerTimeOfDay)
+    //    innerNextImage = 0
+    //}
+    img.src = `assets/${timeOfDay}/${zeroPad(imagesArray[hour%6])}.jpg`
     img.onload = () => {
         document.body.style.backgroundImage =
             `url('assets/${timeOfDay}/${nextImageNumber()}.jpg')`
@@ -145,7 +146,6 @@ function setBgGreet(hour) {
     }
 
     else if (hour < 18) {
-        console.log('click gets into setBgGreet')
         nextImage('afternoon', hour);
         greeting.textContent = 'Good Afternoon, '
     }
@@ -321,7 +321,7 @@ async function getWeather() {
 //#region event listeners and function calls
 function coolDownWrapperBg() {
     document.querySelector(".nextButton").disabled = true;
-    setTimeout(function() {document.querySelector(".nextButton").disabled = false;}, 1200);
+    setTimeout(function() {document.querySelector(".nextButton").disabled = false;}, 2200);
     setBgGreet("d")
 }
 
