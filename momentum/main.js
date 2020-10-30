@@ -124,6 +124,7 @@ function nextImage(timeOfDay, hour) {
     //    innerNextImage = 0
     //}
 
+    console.log(`assets/${timeOfDay}/${zeroPad(imagesArray[hour%6])}.jpg`)
     img.src = `assets/${timeOfDay}/${zeroPad(imagesArray[hour%6])}.jpg`
     img.onload = () => {
         document.body.style.backgroundImage =
@@ -134,18 +135,20 @@ function nextImage(timeOfDay, hour) {
 let clicked = false
 
 function recalcToD(hour) {
+    hour = hour % 24
     if (hour < 6) return 'night'
     else if (hour < 12) return 'morning'
     else if (hour < 18) return 'afternoon'
     else if (hour < 24) return 'evening'
-    else if (hour >= 24) {
-        hour = 0
-        i = 0
-        return 'night'
-    }
+    //else if (hour >= 24) {
+     //   hour = 0
+      //  i = 0
+       // return 'night'
+    //}
     // my mistake -- can't pass hour less than it is, see images before current time
 }
 
+let hourWrapper
 function setBgGreet(hour) {
 
     console.log(hour, 'testing')
@@ -155,10 +158,11 @@ function setBgGreet(hour) {
         hour = now.getHours()
         clicked = true
         i++
+        hourWrapper = (hour+i > 24) ? hour+i - 24 : hour+i
     }
     if (hour < 6) {
         greeting.textContent = 'Good Night, '
-        if (clicked) nextImage(recalcToD(hour+i),hour+i)
+        if (clicked) nextImage(recalcToD(hourWrapper),hourWrapper)
         else {
           nextImage('night', hour)
           i = 0
@@ -167,7 +171,7 @@ function setBgGreet(hour) {
 
     else if (hour < 12) {
         greeting.textContent = 'Good Morning, '
-        if (clicked) nextImage(recalcToD(hour+i),hour+i)
+        if (clicked) nextImage(recalcToD(hourWrapper),hourWrapper)
         else {
         nextImage('morning', hour);
         i = 0}
@@ -175,7 +179,7 @@ function setBgGreet(hour) {
 
     else if (hour < 18) {
         greeting.textContent = 'Good Afternoon, '
-        if (clicked) nextImage(recalcToD(hour+i),hour+i)
+        if (clicked) nextImage(recalcToD(hourWrapper),hourWrapper)
         else {
         nextImage('afternoon', hour);
         i = 0}
@@ -183,7 +187,7 @@ function setBgGreet(hour) {
 
     else if (hour < 24) {
         greeting.textContent = 'Good Evening, '
-        if (clicked) nextImage(recalcToD(hour+i),hour+i)
+        if (clicked) nextImage(recalcToD(hourWrapper),hourWrapper)
         else {
         nextImage('evening', hour);
         i = 0}
