@@ -227,10 +227,10 @@ function clearGoal() {
 //#region quote
 async function getQuote() {
     const url =
-        `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`
+        `https://quote-garden.herokuapp.com/api/v2/quotes/random`
     const res = await fetch(url)
     const data = await res.json()
-    quoteBody.textContent = data.quoteText
+    quoteBody.textContent = data.quote.quoteText
     //figcaption.textContent = data.quoteAuthor
   }
   document.addEventListener('DOMContentLoaded', getQuote)
@@ -296,7 +296,12 @@ async function getWeather() {
   const data = await res.json()
   //console.log(data.weatheweatherIcon.classList.add(`owf-${data.weather[0].id}`);
     console.log(data.main)
-  if (!data.main) {city.textContent = "Can't find such city"}
+  if (!data.main) {
+      city.textContent = "Can't find such city"
+      temp.textContent = ''
+      wind.textContent = ''
+      humidity.textContent = ''
+    }
 
   temp.textContent = data.main.temp + ' °C'
   localStorage.setItem('temp', temp.innerText)
