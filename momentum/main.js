@@ -319,6 +319,11 @@ async function getWeather() {
 //#endregion weather
 
 //#region event listeners and function calls
+function coolDownWrapperBg() {
+    document.querySelector(".nextButton").disabled = true;
+    setTimeout(function() {document.querySelector(".nextButton").disabled = false;}, 1200);
+    setBgGreet("d")
+}
 
 makeImagesArray()
 let newDate = new Date()
@@ -335,7 +340,9 @@ city.addEventListener('blur', setCity)
 goal.addEventListener('click', clearGoal)
 goal.addEventListener('keypress', setGoal)
 goal.addEventListener('blur', setGoal)
-nextButton.addEventListener('click', setBgGreet)
+
+nextButton.addEventListener('click', coolDownWrapperBg)
+
 //nextButton.addEventListener('click', console.log('works??'))
 updateTime()
 updateDate()
