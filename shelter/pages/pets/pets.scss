@@ -331,6 +331,7 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
 @media screen and (max-width: 1279px) {
   .main-pets-cards {
     justify-content: center;
+    width: 700px;
   }
   .pets-card:nth-child(7) {
     display: none;
@@ -350,5 +351,6 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
 
   .main-pets-cards {
     flex-direction: column;
+    width: auto;
   }
 }
