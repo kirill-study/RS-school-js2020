@@ -128,6 +128,7 @@ function nextImage(timeOfDay, hour) {
 
 function setBgGreet(hour) {
 
+    console.log(hour, 'testing')
     //console.log('click gets into setBgGreet', hour)
     if (hour.typeOf != 'number') {
         let now = new Date()
@@ -138,18 +139,18 @@ function setBgGreet(hour) {
         greeting.textContent = 'Good Night, '
     }
 
-    if (hour < 12) {
+    else if (hour < 12) {
         nextImage('morning', hour);
         greeting.textContent = 'Good Morning, '
     }
 
-    if (hour < 18) {
+    else if (hour < 18) {
         console.log('click gets into setBgGreet')
         nextImage('afternoon', hour);
         greeting.textContent = 'Good Afternoon, '
     }
 
-    if (hour < 24) {
+    else if (hour < 24) {
         nextImage('evening', hour);
         greeting.textContent = 'Good Evening, '
     }

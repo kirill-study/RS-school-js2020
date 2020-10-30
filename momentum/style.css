@@ -64,7 +64,8 @@ time {
 
 .weather {
     margin-top: 0.5rem;
-    width: 20ch;
+    width: 55ch;
+    height: 20vh;
     font-size: 20px;
 }
 
@@ -89,6 +90,9 @@ button:hover, .city:hover, .goal:hover, .name:hover {
     span {
         display: block;
     }
+.weather {
+    width: 35ch;
+}
 }
 
 
@@ -96,4 +100,8 @@ button:hover, .city:hover, .goal:hover, .name:hover {
     span {
         display: block;
     }
+
+.weather {
+    width: 25ch;
+}
 }
