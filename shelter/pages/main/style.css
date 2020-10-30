@@ -764,6 +764,11 @@
   display: none;
 }
 
+.hero,
+.footer {
+  background-size: cover;
+}
+
 @media screen and (max-width: 1279px) {
   .header .wrapper {
     padding: 0 3rem;
