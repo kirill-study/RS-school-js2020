@@ -197,6 +197,7 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
 .logo {
   display: flex;
   flex-direction: column;
+  z-index: 1111;
 
   &__title {
     color: $color-primary;
@@ -619,6 +620,16 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   background-size: cover;
 }
 
+.nav-burger {
+  display: none;
+}
+
+.dark-opac-container {
+  display: none;
+}
+
+
+
 
 
 
@@ -698,16 +709,77 @@ $card_hover: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
 }
 
 .burger {
+  //position: absolute;
+  width: 30px;
+  heigth: 30px;
+  display: flex;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  z-index: 1000;
   display: block;
+  transition: transform 0.2s ease;
 }
 
 p {
   text-align:justify;
 }
 
-.nav {
-  display: none;
+//.nav {
+  //display: none;
+//}
+
+.scroll-lock {
+  overflow: hidden;
 }
+
+.dark-opac-container {
+  display: block;
+  position: absolute;
+  top: -16px;
+  right: 0;
+  background: #292929;
+  opacity: 0.6;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  transform: translateY(-100%);
+  transition: transform 0.2s ease;
+}
+.nav {
+  display: block;
+  position: absolute;
+  top: -16px;
+  right: 0;
+  background: $color-dark-3xl;
+  height: 100vh;
+  overflow: hidden;
+  transform: translateY(-100%);
+  transition: transform 0.2s ease;
+  width: 320px;
+  padding: 250px 50px;
+}
+.nav-list {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.nav-list__link {
+  font-size: 3.5rem;
+}
+
+.showNav {
+  transform: translateY(0);
+}
+
+.showClose {
+  transform: rotate(90deg);
+  transition: transform 0.2s ease;
+}
+
 .wrapper {
   padding: 2rem 2rem 0 2rem;
 }
