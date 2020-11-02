@@ -98,9 +98,9 @@ const Keyboard = {
       'b': 'и',
       'n': 'т',
       'm': 'ь',
-      '': 'б',
-      'q': 'ю',
-      'q': '.',
+      ',': 'б',
+      '.': 'ю',
+      '/': '.'
     }
   },
 
@@ -112,7 +112,8 @@ const Keyboard = {
   properties: {
     value: '',
     capsLock: false,
-    shiftState: false
+    shiftState: false,
+    layoutRu: false
   },
 
   init () {
@@ -143,12 +144,13 @@ const Keyboard = {
 
   _createKeys () {
     const fragment = document.createDocumentFragment()
+    let textArea = document.querySelector('.use-keyboard-input')
     const keyLayout = [
       '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'backspace',
       'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']',
       'caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'enter',
       'shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '?',
-      'en/ru', 'space', 'done'
+      'en/ru', 'voice', 'space', '←', '→', 'done'
     ]
 
     // Creates HTML for an icon
@@ -169,9 +171,11 @@ const Keyboard = {
           keyElement.classList.add('keyboard__key--wide')
           keyElement.innerHTML = createIconHTML('backspace')
 
-          keyElement.addEventListener('click', () => {
+          keyElement.addEventListener('click', (e) => {
+            e.preventDefault()
             this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1)
             this._triggerEvent('oninput')
+            document.querySelector('.use-keyboard-input').focus()
           })
 
           break
@@ -180,9 +184,11 @@ const Keyboard = {
           keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable')
           keyElement.innerHTML = createIconHTML('keyboard_capslock')
 
-          keyElement.addEventListener('click', () => {
+          keyElement.addEventListener('click', (e) => {
+            e.preventDefault()
             this._toggleCapsLock()
             keyElement.classList.toggle('keyboard__key--active', this.properties.capsLock)
+            document.querySelector('.use-keyboard-input').focus()
           })
 
           break
@@ -191,9 +197,11 @@ const Keyboard = {
           keyElement.classList.add('keyboard__key--wide')
           keyElement.innerHTML = createIconHTML('keyboard_return')
 
-          keyElement.addEventListener('click', () => {
+          keyElement.addEventListener('click', (e) => {
+            e.preventDefault()
             this.properties.value += '\n'
             this._triggerEvent('oninput')
+            document.querySelector('.use-keyboard-input').focus()
           })
 
           break
@@ -202,9 +210,11 @@ const Keyboard = {
           keyElement.classList.add('keyboard__key--extra-wide')
           keyElement.innerHTML = createIconHTML('space_bar')
 
-          keyElement.addEventListener('click', () => {
+          keyElement.addEventListener('click', (e) => {
+            e.preventDefault()
             this.properties.value += ' '
             this._triggerEvent('oninput')
+            document.querySelector('.use-keyboard-input').focus()
           })
 
           break
@@ -213,7 +223,8 @@ const Keyboard = {
           keyElement.classList.add('keyboard__key--wide', 'keyboard__key--dark')
           keyElement.innerHTML = createIconHTML('check_circle')
 
-          keyElement.addEventListener('click', () => {
+          keyElement.addEventListener('click', (e) => {
+            e.preventDefault()
             this.close()
             this._triggerEvent('onclose')
           })
@@ -225,29 +236,80 @@ const Keyboard = {
           //keyElement.innerHTML = createIconHTML('keyboard_capslock')
           keyElement.textContent = key.toLowerCase()
 
-          keyElement.addEventListener('click', () => {
+          keyElement.addEventListener('click', (e) => {
+            e.preventDefault()
             this._toggleCapsLock()
             this.properties.shiftState = !this.properties.shiftState
             keyElement.classList.toggle('keyboard__key--active', this.properties.shiftState)
+            document.querySelector('.use-keyboard-input').focus()
           })
 
           break
 
         case 'en/ru':
           keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable')
-          keyElement.innerHTML = createIconHTML('keyboard_capslock')
+          //keyElement.innerHTML = createIconHTML('keyboard_capslock')
+          keyElement.textContent = 'en'
 
-          keyElement.addEventListener('click', () => {
-            this._toggleCapsLock()
-            keyElement.classList.toggle('keyboard__key--active', this.properties.capsLock)
+          keyElement.addEventListener('click', (e) => {
+          e.preventDefault()
+            this.properties.layoutRu = !this.properties.layoutRu
+            this._changeLayout()
+            keyElement.classList.toggle('keyboard__key--russian', this.properties.layoutRu)
+            document.querySelector('.use-keyboard-input').focus()
           })
 
+          break
+
+        case 'voice':
+         keyElement.classList.add('keyboard__key--wide', 'voice')
+          //keyElement.innerHTML = createIconHTML('keyboard_capslock')
+          keyElement.textContent = 'voice'
+
+          keyElement.addEventListener('click', (e) => {
+          e.preventDefault()
+          })
+          break
+
+        case '←':
+         keyElement.classList.add('keyboard__key--wide', 'arrow-left')
+          //keyElement.innerHTML = createIconHTML('keyboard_capslock')
+          keyElement.textContent = '←'
+
+          textArea = document.querySelector('.use-keyboard-input')
+
+          keyElement.addEventListener('click', (e) => {
+            e.preventDefault()
+            let prevValue =textArea.selectionStart
+            textArea.selectionStart = textArea.selectionEnd = prevValue-1
+            document.querySelector('.use-keyboard-input').focus()
+          })
+          break
+
+        case '→':
+         keyElement.classList.add('keyboard__key--wide', 'arrow-right')
+          //keyElement.innerHTML = createIconHTML('keyboard_capslock')
+          keyElement.textContent = '→'
+
+          textArea = document.querySelector('.use-keyboard-input')
+
+          keyElement.addEventListener('click', (e) => {
+          e.preventDefault()
+            let prevValue =textArea.selectionStart
+            textArea.selectionStart = textArea.selectionEnd = prevValue+1
+            document.querySelector('.use-keyboard-input').focus()
+
+          })
           break
 
         default:
           keyElement.textContent = key.toLowerCase()
 
-          keyElement.addEventListener('click', () => {
+          keyElement.addEventListener('mousedown', (e) => {
+          e.preventDefault()
+//            if (this.properties.layoutRu) {
+
+            //}
 
         if (this.properties.capsLock) {
           if (this.elements.capsSymbDict[key.toLowerCase()] !== undefined) {
@@ -316,6 +378,22 @@ const Keyboard = {
           key.textContent = key.textContent.toLowerCase()
         }
 
+      }
+    }
+  },
+
+
+  _changeLayout () {
+    for (const key of this.elements.keys) {
+      if (key.childElementCount === 0 && //not icon
+        key.textContent != 'shift' &&
+        key.textContent != 'en' &&
+        key.textContent != 'ru' &&
+        key.textContent != 'en/ru')
+        {
+          if (this.properties.layoutRu) {
+            key.textContent = this.elements.russianDict[key.textContent.toLowerCase()]
+          }
       }
     }
   },
