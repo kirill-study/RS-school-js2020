@@ -248,7 +248,22 @@ const Keyboard = {
           keyElement.textContent = key.toLowerCase()
 
           keyElement.addEventListener('click', () => {
-            this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase()
+
+        if (this.properties.capsLock) {
+          if (this.elements.capsSymbDict[key.toLowerCase()] !== undefined) {
+              key = this.elements.capsSymbDict[key.toLowerCase()]
+            }
+          else key = key.toUpperCase()
+        }
+        else {
+          if (this.elements.revCapsSymbDict[key.toLowerCase()] !== undefined) {
+              key = this.elements.revCapsSymbDict[key.toLowerCase()]
+          }
+          key = key.toLowerCase()
+        }
+
+            this.properties.value += key
+            //this.properties.capsLock ? key.toUpperCase() : key.toLowerCase()
             this._triggerEvent('oninput')
             if (this.properties.shiftState) {
               this.properties.shiftState = false
