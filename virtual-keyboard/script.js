@@ -2,7 +2,93 @@ const Keyboard = {
   elements: {
     main: null,
     keysContainer: null,
-    keys: []
+    keys: [],
+    capsSymbDict : {
+      '1': '!',
+      '2': '@',
+      '3': '#',
+      '4': '$',
+      '5': '%',
+      '6': '^',
+      '7': '&',
+      '8': '*',
+      '9': '(',
+      '0': ')',
+      '[': '{',
+      ']': '}',
+      ';': ':',
+      "'": '"',
+      ',': '<',
+      '.': '>',
+      '/': '?',
+    },
+    revCapsSymbDict : {
+      '!': '1',
+      '@': '2',
+      '#': '3',
+      '$': '4',
+      '%': '5',
+      '^': '6',
+      '&': '7',
+      '*': '8',
+      '(': '9',
+      ')': '0',
+      '{': '[',
+      '}': ']',
+      ':': ';',
+      '"': "'",
+      '<': ',',
+      '>': '.',
+      '?': '/',
+    },
+    ruCapsSymbDict : {
+      '1': '!',
+      '2': '"',
+      '3': '№',
+      '4': ';',
+      '5': '%',
+      '6': ':',
+      '7': '?',
+      '8': '*',
+      '9': '(',
+      '0': ')',
+      '.': ','
+    },
+    russianDict : {
+      'q': 'й',
+      'w': 'ц',
+      'e': 'у',
+      'r': 'к',
+      't': 'е',
+      'y': 'н',
+      'u': 'г',
+      'i': 'ш',
+      'o': 'щ',
+      'p': 'з',
+      '[': 'х',
+      ']': 'ъ',
+      'a': 'ф',
+      's': 'ы',
+      'd': 'в',
+      'f': 'а',
+      'g': 'п',
+      'h': 'р',
+      'j': 'о',
+      'k': 'л',
+      'l': 'д',
+      ';': 'ж',
+      "'": 'э',
+      'z': 'я',
+      'x': 'ч',
+      'c': 'с',
+      'v': 'м',
+      'b': 'и',
+      'n': 'т',
+      'm': 'ь',
+      '': 'б',
+      'q': 'ю',
+      'q': '.',
+    }
   },
 
   eventHandlers: {
@@ -45,10 +131,10 @@ const Keyboard = {
     const fragment = document.createDocumentFragment()
     const keyLayout = [
       '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'backspace',
-      'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
-      'caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'enter',
-      'done', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '?',
-      'space'
+      'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']',
+      'caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'enter',
+      'shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '?',
+      'en/ru', 'space', 'done'
     ]
 
     // Creates HTML for an icon
@@ -58,7 +144,7 @@ const Keyboard = {
 
     keyLayout.forEach(key => {
       const keyElement = document.createElement('button')
-      const insertLineBreak = ['backspace', 'p', 'enter', '?'].indexOf(key) !== -1
+      const insertLineBreak = ['backspace', ']', 'enter', '?'].indexOf(key) !== -1
 
       // Add attributes/classes
       keyElement.setAttribute('type', 'button')
@@ -120,6 +206,24 @@ const Keyboard = {
 
           break
 
+        case 'shift':
+          keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable')
+          keyElement.innerHTML = createIconHTML('keyboard_capslock')
+
+          keyElement.addEventListener('click', () => {
+            this._toggleCapsLock()
+            keyElement.classList.toggle('keyboard__key--active', this.properties.capsLock)
+          })
+
+        case 'en/ru':
+          keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable')
+          keyElement.innerHTML = createIconHTML('keyboard_capslock')
+
+          keyElement.addEventListener('click', () => {
+            this._toggleCapsLock()
+            keyElement.classList.toggle('keyboard__key--active', this.properties.capsLock)
+          })
+
         default:
           keyElement.textContent = key.toLowerCase()
 
@@ -151,8 +255,26 @@ const Keyboard = {
     this.properties.capsLock = !this.properties.capsLock
 
     for (const key of this.elements.keys) {
-      if (key.childElementCount === 0) {
-        key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase()
+      if (key.childElementCount === 0 && //not icon
+        key.textContent != 'shift' &&
+        key.textContent != 'en' &&
+        key.textContent != 'ru' &&
+        key.textContent != 'en/ru'
+         ) {
+
+        if (this.properties.capsLock) {
+          if (this.elements.capsSymbDict[key.textContent.toLowerCase()] !== undefined) {
+              key.textContent = this.elements.capsSymbDict[key.textContent.toLowerCase()]
+            }
+          else key.textContent = key.textContent.toUpperCase()
+        }
+        else {
+          if (this.elements.revCapsSymbDict[key.textContent.toLowerCase()] !== undefined) {
+              key.textContent = this.elements.revCapsSymbDict[key.textContent.toLowerCase()]
+          }
+          key.textContent = key.textContent.toLowerCase()
+        }
+
       }
     }
   },
