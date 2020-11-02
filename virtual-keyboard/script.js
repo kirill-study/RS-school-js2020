@@ -54,6 +54,19 @@ const Keyboard = {
       '0': ')',
       '.': ','
     },
+    revRuCapsSymbDict : {
+      '!': '1',
+      '"': '2',
+      '№': '3',
+      ';': '4',
+      '%': '5',
+      ':': '6',
+      '?': '7',
+      '*': '8',
+      '(': '9',
+      ')': '0',
+      ',': '.'
+    },
     russianDict : {
       'q': 'й',
       'w': 'ц',
@@ -98,7 +111,8 @@ const Keyboard = {
 
   properties: {
     value: '',
-    capsLock: false
+    capsLock: false,
+    shiftState: false
   },
 
   init () {
@@ -207,13 +221,17 @@ const Keyboard = {
           break
 
         case 'shift':
-          keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable')
-          keyElement.innerHTML = createIconHTML('keyboard_capslock')
+          keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable', 'shift')
+          //keyElement.innerHTML = createIconHTML('keyboard_capslock')
+          keyElement.textContent = key.toLowerCase()
 
           keyElement.addEventListener('click', () => {
             this._toggleCapsLock()
-            keyElement.classList.toggle('keyboard__key--active', this.properties.capsLock)
+            this.properties.shiftState = !this.properties.shiftState
+            keyElement.classList.toggle('keyboard__key--active', this.properties.shiftState)
           })
+
+          break
 
         case 'en/ru':
           keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable')
@@ -224,12 +242,20 @@ const Keyboard = {
             keyElement.classList.toggle('keyboard__key--active', this.properties.capsLock)
           })
 
+          break
+
         default:
           keyElement.textContent = key.toLowerCase()
 
           keyElement.addEventListener('click', () => {
             this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase()
             this._triggerEvent('oninput')
+            if (this.properties.shiftState) {
+              this.properties.shiftState = false
+              this._toggleCapsLock()
+              document.querySelector('.shift').classList.toggle('keyboard__key--active', this.properties.shiftState)
+              //this.properties.capsLock = !this.properties.capsLock
+            }
           })
 
           break
