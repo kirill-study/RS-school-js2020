@@ -176,6 +176,15 @@ const Keyboard = {
         })
       })
     })
+
+    window.addEventListener('keydown', e => {
+    //console.log(e.code)
+    //console.log(document.querySelector(`.${e.code}`))
+    let key = document.querySelector(`.${e.code}`)
+    //document.querySelector('.KeyK').click()
+    key.dispatchEvent(new MouseEvent('mousedown'))
+
+    })
   },
 
   _createKeys () {
@@ -493,7 +502,9 @@ recognition.maxAlternatives = 1;
           break
 
         default:
-          keyElement.textContent = key.toLowerCase()
+          keyElement.textContent = key.toLowerCase() 
+          keyElement.classList.toggle(`Key${key.toUpperCase()}`)
+
 
           keyElement.addEventListener('transitionend', e => {
             if (e.propertyName != 'transform') return
@@ -577,6 +588,7 @@ recognition.maxAlternatives = 1;
         key.textContent != 'en' &&
         key.textContent != 'ru' &&
         key.textContent != 'voice' &&
+        key.textContent != 'sound' &&
         key.textContent != 'en/ru'
          ) {
 
@@ -593,6 +605,7 @@ recognition.maxAlternatives = 1;
               key.textContent = this.elements.revRuCapsSymbDict[key.textContent.toLowerCase()]
             }
             */
+           // if (this.properties.shiftState &&)
           if (this.elements.capsSymbDict[key.textContent.toLowerCase()] !== undefined) {
               key.textContent = this.elements.capsSymbDict[key.textContent.toLowerCase()]
             }
