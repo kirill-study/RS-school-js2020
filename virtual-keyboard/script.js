@@ -371,10 +371,10 @@ const Keyboard = {
 
 
           case 'voice':
-            /*
          keyElement.classList.add('keyboard__key--wide', 'arrow-right')
           //keyElement.innerHTML = createIconHTML('keyboard_capslock')
-          keyElement.textContent = 'sound'
+          keyElement.textContent = 'voice'
+            /*
 
 
 var recognition = new SpeechRecognition();
@@ -404,9 +404,12 @@ recognition.maxAlternatives = 1;
 
 
           case 'sound':
+          keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable', 'keyboard__key--active')
+          keyElement.textContent = 'sound'
             keyElement.addEventListener('click', (e) => {
             e.preventDefault()
-            document.querySelectorAll('audio').forEach(audio => audio.classList = '')
+            keyElement.classList.toggle('keyboard__key--active')
+            document.querySelectorAll('audio').forEach(audio => audio.muted ? audio.muted = false : audio.muted = true )
           })
 
           break
@@ -493,6 +496,18 @@ recognition.maxAlternatives = 1;
          ) {
 
         if (this.properties.capsLock) {
+          /*
+          if (this.properties.layoutRu) {
+            if (this.elements.ruCapsSymbDict[key.textContent.toLowerCase()] !== undefined) {
+              key.textContent = this.elements.ruCapsSymbDict[key.textContent.toLowerCase()]
+            }
+            else key.textContent = key.textContent.toUpperCase()
+          }
+//last edit
+           if (this.elements.revRuCapsSymbDict[key.textContent.toLowerCase()] !== undefined) {
+              key.textContent = this.elements.revRuCapsSymbDict[key.textContent.toLowerCase()]
+            }
+            */
           if (this.elements.capsSymbDict[key.textContent.toLowerCase()] !== undefined) {
               key.textContent = this.elements.capsSymbDict[key.textContent.toLowerCase()]
             }
@@ -523,7 +538,7 @@ recognition.maxAlternatives = 1;
               if (this.properties.layoutRu) {
               key.textContent = this.elements.russianDict[key.textContent.toLowerCase()]
               } else key.textContent = this.elements.revRussianDict[key.textContent.toLowerCase()]
-    console.log(key.textContent)
+    //console.log(key.textContent)
             }
       }
     }
