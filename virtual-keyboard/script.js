@@ -101,7 +101,42 @@ const Keyboard = {
       ',': 'б',
       '.': 'ю',
       '/': '.'
-    }
+    },
+   revRussianDict : {
+      'й': 'q',
+      'ц': 'w',
+      'у': 'e',
+      'к':'r',
+      'е':'t',
+      'н':'y',
+      'г':'u',
+      'ш':'i',
+      'щ':'o',
+      'з':'p',
+      'х':'[',
+      'ъ':']',
+      'ф':'a',
+      'ы':'s',
+      'в':'d',
+      'а':'f',
+      'п':'g',
+      'р': 'h',
+      'о':'j',
+      'л':'k',
+      'д':'l',
+      'ж':';',
+      'э':"'",
+      'я':'z',
+      'ч':'x',
+      'с':'c',
+      'м':'v',
+      'и':'b',
+      'т':'n',
+      'ь':'m',
+      'б':',',
+      'ю':'.',
+      '.':'/'
+    },
   },
 
   eventHandlers: {
@@ -113,7 +148,8 @@ const Keyboard = {
     value: '',
     capsLock: false,
     shiftState: false,
-    layoutRu: false
+    layoutRu: false,
+    recording: false
   },
 
   init () {
@@ -146,7 +182,7 @@ const Keyboard = {
     const fragment = document.createDocumentFragment()
     let textArea = document.querySelector('.use-keyboard-input')
     const keyLayout = [
-      '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'backspace',
+      '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'backspace', 'sound',
       'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']',
       'caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'enter',
       'shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '?',
@@ -160,7 +196,7 @@ const Keyboard = {
 
     keyLayout.forEach(key => {
       const keyElement = document.createElement('button')
-      const insertLineBreak = ['backspace', ']', 'enter', '?'].indexOf(key) !== -1
+      const insertLineBreak = ['sound', ']', 'enter', '?'].indexOf(key) !== -1
 
       // Add attributes/classes
       keyElement.setAttribute('type', 'button')
@@ -175,6 +211,9 @@ const Keyboard = {
             e.preventDefault()
             this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1)
             this._triggerEvent('oninput')
+            let audio = document.querySelector('.audio-backspace')
+            audio.currentTime = 0
+            audio.play()
             document.querySelector('.use-keyboard-input').focus()
           })
 
@@ -188,6 +227,9 @@ const Keyboard = {
             e.preventDefault()
             this._toggleCapsLock()
             keyElement.classList.toggle('keyboard__key--active', this.properties.capsLock)
+            let audio = document.querySelector('.audio-caps')
+            audio.currentTime = 0
+            audio.play()
             document.querySelector('.use-keyboard-input').focus()
           })
 
@@ -201,6 +243,9 @@ const Keyboard = {
             e.preventDefault()
             this.properties.value += '\n'
             this._triggerEvent('oninput')
+            let audio = document.querySelector('.audio-enter')
+            audio.currentTime = 0
+            audio.play()
             document.querySelector('.use-keyboard-input').focus()
           })
 
@@ -214,6 +259,9 @@ const Keyboard = {
             e.preventDefault()
             this.properties.value += ' '
             this._triggerEvent('oninput')
+            let audio = document.querySelector('.audio-en')
+            audio.currentTime = 0
+            audio.play()
             document.querySelector('.use-keyboard-input').focus()
           })
 
@@ -227,6 +275,9 @@ const Keyboard = {
             e.preventDefault()
             this.close()
             this._triggerEvent('onclose')
+            let audio = document.querySelector('.audio-en')
+            audio.currentTime = 0
+            audio.play()
           })
 
           break
@@ -241,6 +292,9 @@ const Keyboard = {
             this._toggleCapsLock()
             this.properties.shiftState = !this.properties.shiftState
             keyElement.classList.toggle('keyboard__key--active', this.properties.shiftState)
+            let audio = document.querySelector('.audio-shift')
+            audio.currentTime = 0
+            audio.play()
             document.querySelector('.use-keyboard-input').focus()
           })
 
@@ -255,7 +309,11 @@ const Keyboard = {
           e.preventDefault()
             this.properties.layoutRu = !this.properties.layoutRu
             this._changeLayout()
-            keyElement.classList.toggle('keyboard__key--russian', this.properties.layoutRu)
+            //keyElement.classList.toggle('keyboard__key--russian', this.properties.layoutRu)
+            this.properties.layoutRu ? keyElement.textContent = 'ru' : keyElement.textContent = 'en'
+            let audio = document.querySelector('.audio-en')
+            audio.currentTime = 0
+            audio.play()
             document.querySelector('.use-keyboard-input').focus()
           })
 
@@ -268,6 +326,9 @@ const Keyboard = {
 
           keyElement.addEventListener('click', (e) => {
           e.preventDefault()
+            let audio = document.querySelector('.audio-en')
+            audio.currentTime = 0
+            audio.play()
           })
           break
 
@@ -282,6 +343,9 @@ const Keyboard = {
             e.preventDefault()
             let prevValue =textArea.selectionStart
             textArea.selectionStart = textArea.selectionEnd = prevValue-1
+            let audio = document.querySelector('.audio-en')
+            audio.currentTime = 0
+            audio.play()
             document.querySelector('.use-keyboard-input').focus()
           })
           break
@@ -297,9 +361,54 @@ const Keyboard = {
           e.preventDefault()
             let prevValue =textArea.selectionStart
             textArea.selectionStart = textArea.selectionEnd = prevValue+1
+            let audio = document.querySelector('.audio-en')
+            audio.currentTime = 0
+            audio.play()
             document.querySelector('.use-keyboard-input').focus()
 
           })
+          break
+
+
+          case 'voice':
+            /*
+         keyElement.classList.add('keyboard__key--wide', 'arrow-right')
+          //keyElement.innerHTML = createIconHTML('keyboard_capslock')
+          keyElement.textContent = 'sound'
+
+
+var recognition = new SpeechRecognition();
+var speechRecognitionList = new SpeechGrammarList();
+speechRecognitionList.addFromString(grammar, 1);
+recognition.grammars = speechRecognitionList;
+recognition.continuous = false;
+recognition.lang = 'en-US';
+recognition.interimResults = false;
+recognition.maxAlternatives = 1;
+
+          keyElement.addEventListener('click', (e) => {
+          e.preventDefault()
+          this.properties.recording = !this.properties.recording
+          if (this.properties.recording) {
+            recognition.stop()
+            prevValue = speechRecognitionResultInstance[0];
+          }
+          else recognition.start()
+            //let prevValue =textArea.selectionStart
+            //textArea.selectionStart = textArea.selectionEnd = prevValue+1
+            //document.querySelector('.use-keyboard-input').focus()
+
+          })
+          */
+          break
+
+
+          case 'sound':
+            keyElement.addEventListener('click', (e) => {
+            e.preventDefault()
+            document.querySelectorAll('audio').forEach(audio => audio.classList = '')
+          })
+
           break
 
         default:
@@ -307,9 +416,26 @@ const Keyboard = {
 
           keyElement.addEventListener('mousedown', (e) => {
           e.preventDefault()
+          keyElement.classList.toggle('playing')
+          //window.setTimeout(keyElement.classList.toggle('playing'), 7000)
 //            if (this.properties.layoutRu) {
 
             //}
+            let audio = document.querySelector('.audio-en')
+            audio.currentTime = 0
+            audio.play()
+
+          if (this.properties.layoutRu) {
+            if (this.elements.russianDict[key.toLowerCase()]) {
+              key = this.elements.russianDict[key.toLowerCase()]
+              }
+            }
+
+            if (!this.properties.layoutRu) {
+              if (this.elements.revRussianDict[key.toLowerCase()]) {
+                key = this.elements.revRussianDict[key.toLowerCase()]
+                }
+              }
 
         if (this.properties.capsLock) {
           if (this.elements.capsSymbDict[key.toLowerCase()] !== undefined) {
@@ -362,6 +488,7 @@ const Keyboard = {
         key.textContent != 'shift' &&
         key.textContent != 'en' &&
         key.textContent != 'ru' &&
+        key.textContent != 'voice' &&
         key.textContent != 'en/ru'
          ) {
 
@@ -391,9 +518,13 @@ const Keyboard = {
         key.textContent != 'ru' &&
         key.textContent != 'en/ru')
         {
-          if (this.properties.layoutRu) {
-            key.textContent = this.elements.russianDict[key.textContent.toLowerCase()]
-          }
+          if (this.elements.russianDict[key.textContent.toLowerCase()] ||
+            this.elements.revRussianDict[key.textContent.toLowerCase()]) {
+              if (this.properties.layoutRu) {
+              key.textContent = this.elements.russianDict[key.textContent.toLowerCase()]
+              } else key.textContent = this.elements.revRussianDict[key.textContent.toLowerCase()]
+    console.log(key.textContent)
+            }
       }
     }
   },
