@@ -180,10 +180,10 @@ const Keyboard = {
     window.addEventListener('keydown', e => {
     //console.log(e.code)
     //console.log(document.querySelector(`.${e.code}`))
+    e.preventDefault()
     let key = document.querySelector(`.${e.code}`)
     //document.querySelector('.KeyK').click()
     key.dispatchEvent(new MouseEvent('mousedown'))
-
     })
   },
 
@@ -502,8 +502,9 @@ recognition.maxAlternatives = 1;
           break
 
         default:
-          keyElement.textContent = key.toLowerCase() 
-          keyElement.classList.toggle(`Key${key.toUpperCase()}`)
+          keyElement.textContent = key.toLowerCase()
+          if (Number.isInteger(+key)) keyElement.classList.toggle(`Digit${key}`)
+          else keyElement.classList.toggle(`Key${key.toUpperCase()}`)
 
 
           keyElement.addEventListener('transitionend', e => {
