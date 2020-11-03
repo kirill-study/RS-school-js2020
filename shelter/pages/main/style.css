@@ -763,6 +763,7 @@
 
 .burger {
   display: none;
+  cursor: pointer;
 }
 
 .hero,
