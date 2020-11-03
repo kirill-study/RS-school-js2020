@@ -207,8 +207,14 @@ const Keyboard = {
           keyElement.classList.add('keyboard__key--wide')
           keyElement.innerHTML = createIconHTML('backspace')
 
+          keyElement.addEventListener('transitionend', e => {
+            if (e.propertyName != 'transform') return
+            keyElement.classList.remove('playing')
+          })
+
           keyElement.addEventListener('click', (e) => {
             e.preventDefault()
+            keyElement.classList.toggle('playing')
             this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1)
             this._triggerEvent('oninput')
             let audio = document.querySelector('.audio-backspace')
@@ -223,8 +229,14 @@ const Keyboard = {
           keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable')
           keyElement.innerHTML = createIconHTML('keyboard_capslock')
 
+          keyElement.addEventListener('transitionend', e => {
+            if (e.propertyName != 'transform') return
+            keyElement.classList.remove('playing')
+          })
+
           keyElement.addEventListener('click', (e) => {
             e.preventDefault()
+            keyElement.classList.toggle('playing')
             this._toggleCapsLock()
             keyElement.classList.toggle('keyboard__key--active', this.properties.capsLock)
             let audio = document.querySelector('.audio-caps')
@@ -239,8 +251,14 @@ const Keyboard = {
           keyElement.classList.add('keyboard__key--wide')
           keyElement.innerHTML = createIconHTML('keyboard_return')
 
+          keyElement.addEventListener('transitionend', e => {
+            if (e.propertyName != 'transform') return
+            keyElement.classList.remove('playing')
+          })
+
           keyElement.addEventListener('click', (e) => {
             e.preventDefault()
+            keyElement.classList.toggle('playing')
             this.properties.value += '\n'
             this._triggerEvent('oninput')
             let audio = document.querySelector('.audio-enter')
@@ -255,8 +273,14 @@ const Keyboard = {
           keyElement.classList.add('keyboard__key--extra-wide')
           keyElement.innerHTML = createIconHTML('space_bar')
 
+
+          keyElement.addEventListener('transitionend', e => {
+            if (e.propertyName != 'transform') return
+            keyElement.classList.remove('playing')
+          })
           keyElement.addEventListener('click', (e) => {
             e.preventDefault()
+            keyElement.classList.toggle('playing')
             this.properties.value += ' '
             this._triggerEvent('oninput')
             let audio = document.querySelector('.audio-en')
@@ -271,8 +295,14 @@ const Keyboard = {
           keyElement.classList.add('keyboard__key--wide', 'keyboard__key--dark')
           keyElement.innerHTML = createIconHTML('check_circle')
 
+          keyElement.addEventListener('transitionend', e => {
+            if (e.propertyName != 'transform') return
+            keyElement.classList.remove('playing')
+          })
+
           keyElement.addEventListener('click', (e) => {
             e.preventDefault()
+            keyElement.classList.toggle('playing')
             this.close()
             this._triggerEvent('onclose')
             let audio = document.querySelector('.audio-en')
@@ -287,8 +317,14 @@ const Keyboard = {
           //keyElement.innerHTML = createIconHTML('keyboard_capslock')
           keyElement.textContent = key.toLowerCase()
 
+          keyElement.addEventListener('transitionend', e => {
+            if (e.propertyName != 'transform') return
+            keyElement.classList.remove('playing')
+          })
+
           keyElement.addEventListener('click', (e) => {
             e.preventDefault()
+            keyElement.classList.toggle('playing')
             this._toggleCapsLock()
             this.properties.shiftState = !this.properties.shiftState
             keyElement.classList.toggle('keyboard__key--active', this.properties.shiftState)
@@ -305,8 +341,14 @@ const Keyboard = {
           //keyElement.innerHTML = createIconHTML('keyboard_capslock')
           keyElement.textContent = 'en'
 
+          keyElement.addEventListener('transitionend', e => {
+            if (e.propertyName != 'transform') return
+            keyElement.classList.remove('playing')
+          })
+
           keyElement.addEventListener('click', (e) => {
           e.preventDefault()
+            keyElement.classList.toggle('playing')
             this.properties.layoutRu = !this.properties.layoutRu
             this._changeLayout()
             //keyElement.classList.toggle('keyboard__key--russian', this.properties.layoutRu)
@@ -324,8 +366,14 @@ const Keyboard = {
           //keyElement.innerHTML = createIconHTML('keyboard_capslock')
           keyElement.textContent = 'voice'
 
+          keyElement.addEventListener('transitionend', e => {
+            if (e.propertyName != 'transform') return
+            keyElement.classList.remove('playing')
+          })
+
           keyElement.addEventListener('click', (e) => {
           e.preventDefault()
+            keyElement.classList.toggle('playing')
             let audio = document.querySelector('.audio-en')
             audio.currentTime = 0
             audio.play()
@@ -339,8 +387,14 @@ const Keyboard = {
 
           textArea = document.querySelector('.use-keyboard-input')
 
+          keyElement.addEventListener('transitionend', e => {
+            if (e.propertyName != 'transform') return
+            keyElement.classList.remove('playing')
+          })
+
           keyElement.addEventListener('click', (e) => {
             e.preventDefault()
+            keyElement.classList.toggle('playing')
             let prevValue =textArea.selectionStart
             textArea.selectionStart = textArea.selectionEnd = prevValue-1
             let audio = document.querySelector('.audio-en')
@@ -357,8 +411,16 @@ const Keyboard = {
 
           textArea = document.querySelector('.use-keyboard-input')
 
-          keyElement.addEventListener('click', (e) => {
-          e.preventDefault()
+
+
+          keyElement.addEventListener('transitionend', e => {
+            if (e.propertyName != 'transform') return
+            keyElement.classList.remove('playing')
+          })
+
+          keyElement.addEventListener('mousedown', (e) => {
+            e.preventDefault()
+            keyElement.classList.toggle('playing')
             let prevValue =textArea.selectionStart
             textArea.selectionStart = textArea.selectionEnd = prevValue+1
             let audio = document.querySelector('.audio-en')
@@ -374,6 +436,14 @@ const Keyboard = {
          keyElement.classList.add('keyboard__key--wide', 'arrow-right')
           //keyElement.innerHTML = createIconHTML('keyboard_capslock')
           keyElement.textContent = 'voice'
+
+
+
+          keyElement.addEventListener('transitionend', e => {
+            if (e.propertyName != 'transform') return
+            keyElement.classList.remove('playing')
+          })
+
             /*
 
 
@@ -406,8 +476,16 @@ recognition.maxAlternatives = 1;
           case 'sound':
           keyElement.classList.add('keyboard__key--wide', 'keyboard__key--activatable', 'keyboard__key--active')
           keyElement.textContent = 'sound'
-            keyElement.addEventListener('click', (e) => {
+
+
+          keyElement.addEventListener('transitionend', e => {
+            if (e.propertyName != 'transform') return
+            keyElement.classList.remove('playing')
+          })
+
+            keyElement.addEventListener('mousedown', (e) => {
             e.preventDefault()
+            keyElement.classList.toggle('playing')
             keyElement.classList.toggle('keyboard__key--active')
             document.querySelectorAll('audio').forEach(audio => audio.muted ? audio.muted = false : audio.muted = true )
           })
@@ -416,6 +494,11 @@ recognition.maxAlternatives = 1;
 
         default:
           keyElement.textContent = key.toLowerCase()
+
+          keyElement.addEventListener('transitionend', e => {
+            if (e.propertyName != 'transform') return
+            keyElement.classList.remove('playing')
+          })
 
           keyElement.addEventListener('mousedown', (e) => {
           e.preventDefault()
