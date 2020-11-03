@@ -507,7 +507,9 @@ recognition.maxAlternatives = 1;
 //            if (this.properties.layoutRu) {
 
             //}
-            let audio = document.querySelector('.audio-en')
+            let audio
+            if (this.properties.layoutRu) audio = document.querySelector('.audio-ru')
+            else audio = document.querySelector('.audio-en')
             audio.currentTime = 0
             audio.play()
 
