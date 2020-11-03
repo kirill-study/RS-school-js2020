@@ -213,7 +213,7 @@ const Keyboard = {
 
       switch (key) {
         case 'backspace':
-          keyElement.classList.add('keyboard__key--wide')
+          keyElement.classList.add('keyboard__key--wide', 'Backspace')
           keyElement.innerHTML = createIconHTML('backspace')
 
           keyElement.addEventListener('transitionend', e => {
@@ -221,7 +221,7 @@ const Keyboard = {
             keyElement.classList.remove('playing')
           })
 
-          keyElement.addEventListener('click', (e) => {
+          keyElement.addEventListener('mousedown', (e) => {
             e.preventDefault()
             keyElement.classList.toggle('playing')
             this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1)
@@ -243,7 +243,7 @@ const Keyboard = {
             keyElement.classList.remove('playing')
           })
 
-          keyElement.addEventListener('click', (e) => {
+          keyElement.addEventListener('mousedown', (e) => {
             e.preventDefault()
             keyElement.classList.toggle('playing')
             this._toggleCapsLock()
@@ -257,7 +257,7 @@ const Keyboard = {
           break
 
         case 'enter':
-          keyElement.classList.add('keyboard__key--wide')
+          keyElement.classList.add('keyboard__key--wide', 'Enter')
           keyElement.innerHTML = createIconHTML('keyboard_return')
 
           keyElement.addEventListener('transitionend', e => {
@@ -265,7 +265,7 @@ const Keyboard = {
             keyElement.classList.remove('playing')
           })
 
-          keyElement.addEventListener('click', (e) => {
+          keyElement.addEventListener('mousedown', (e) => {
             e.preventDefault()
             keyElement.classList.toggle('playing')
             this.properties.value += '\n'
