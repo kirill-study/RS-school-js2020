@@ -334,8 +334,8 @@ const Keyboard = {
           keyElement.addEventListener('click', (e) => {
             e.preventDefault()
             keyElement.classList.toggle('playing')
-            this._toggleCapsLock()
             this.properties.shiftState = !this.properties.shiftState
+            this._toggleShiftLock()
             keyElement.classList.toggle('keyboard__key--active', this.properties.shiftState)
             let audio = document.querySelector('.audio-shift')
             audio.currentTime = 0
@@ -537,7 +537,7 @@ recognition.maxAlternatives = 1;
                 }
               }
 
-        if (this.properties.capsLock) {
+        if (this.properties.shiftState) {
           if (this.elements.capsSymbDict[key.toLowerCase()] !== undefined) {
               key = this.elements.capsSymbDict[key.toLowerCase()]
             }
@@ -550,12 +550,16 @@ recognition.maxAlternatives = 1;
           key = key.toLowerCase()
         }
 
+        if (this.properties.capsLock) {
+          key = key.toUpperCase()
+        } else key.toLowerCase()
+
             this.properties.value += key
             //this.properties.capsLock ? key.toUpperCase() : key.toLowerCase()
             this._triggerEvent('oninput')
             if (this.properties.shiftState) {
               this.properties.shiftState = false
-              this._toggleCapsLock()
+              this._toggleShiftLock()
               document.querySelector('.shift').classList.toggle('keyboard__key--active', this.properties.shiftState)
               //this.properties.capsLock = !this.properties.capsLock
             }
@@ -580,6 +584,47 @@ recognition.maxAlternatives = 1;
     }
   },
 
+  _toggleShiftLock () {
+
+    for (const key of this.elements.keys) {
+      if (key.childElementCount === 0 && //not icon
+        key.textContent != 'shift' &&
+        key.textContent != 'en' &&
+        key.textContent != 'ru' &&
+        key.textContent != 'voice' &&
+        key.textContent != 'sound' &&
+        key.textContent != 'en/ru'
+         ) {
+
+        if (this.properties.shiftState) {
+          /*
+          if (this.properties.layoutRu) {
+            if (this.elements.ruCapsSymbDict[key.textContent.toLowerCase()] !== undefined) {
+              key.textContent = this.elements.ruCapsSymbDict[key.textContent.toLowerCase()]
+            }
+            else key.textContent = key.textContent.toUpperCase()
+          }
+//last edit
+           if (this.elements.revRuCapsSymbDict[key.textContent.toLowerCase()] !== undefined) {
+              key.textContent = this.elements.revRuCapsSymbDict[key.textContent.toLowerCase()]
+            }
+            */
+           // if (this.properties.shiftState &&)
+          if (this.elements.capsSymbDict[key.textContent.toLowerCase()] !== undefined) {
+              key.textContent = this.elements.capsSymbDict[key.textContent.toLowerCase()]
+            }
+          else key.textContent = key.textContent.toUpperCase()
+        }
+        else {
+          if (this.elements.revCapsSymbDict[key.textContent.toLowerCase()] !== undefined) {
+              key.textContent = this.elements.revCapsSymbDict[key.textContent.toLowerCase()]
+          }
+          key.textContent = key.textContent.toLowerCase()
+        }
+
+      }
+    }
+  },
   _toggleCapsLock () {
     this.properties.capsLock = !this.properties.capsLock
 
@@ -607,15 +652,9 @@ recognition.maxAlternatives = 1;
             }
             */
            // if (this.properties.shiftState &&)
-          if (this.elements.capsSymbDict[key.textContent.toLowerCase()] !== undefined) {
-              key.textContent = this.elements.capsSymbDict[key.textContent.toLowerCase()]
-            }
-          else key.textContent = key.textContent.toUpperCase()
+          key.textContent = key.textContent.toUpperCase()
         }
         else {
-          if (this.elements.revCapsSymbDict[key.textContent.toLowerCase()] !== undefined) {
-              key.textContent = this.elements.revCapsSymbDict[key.textContent.toLowerCase()]
-          }
           key.textContent = key.textContent.toLowerCase()
         }
 
