@@ -596,6 +596,7 @@ recognition.maxAlternatives = 1;
         key.textContent != 'en/ru'
          ) {
 
+
         if (this.properties.shiftState) {
           /*
           if (this.properties.layoutRu) {
@@ -614,12 +615,18 @@ recognition.maxAlternatives = 1;
               key.textContent = this.elements.capsSymbDict[key.textContent.toLowerCase()]
             }
           else key.textContent = key.textContent.toUpperCase()
+          if (this.properties.capsLock) {
+            key.textContent = key.textContent.toLowerCase()
+          }
         }
         else {
           if (this.elements.revCapsSymbDict[key.textContent.toLowerCase()] !== undefined) {
               key.textContent = this.elements.revCapsSymbDict[key.textContent.toLowerCase()]
           }
           key.textContent = key.textContent.toLowerCase()
+          if (this.properties.capsLock) {
+            key.textContent = key.textContent.toUpperCase()
+          }
         }
 
       }
